@@ -43,6 +43,8 @@ function Home() {
     <div>
       <Header />
       <div className="main-wraper">
+        <div className="clear20"></div>
+
         <div className="container">
           <div className="grid wide">
             <div className="row">
