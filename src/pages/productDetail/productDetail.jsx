@@ -1,12 +1,29 @@
-import React from "react";
+import React, { useState, useEffect, useRef } from "react";
 import "../../css/productDetail.css";
 import Header from "../../components/header/header";
 import SideBar from "../../components/sidebar/SideBar";
+import InfoProduct from "../../components/InfoProduct/InfoProduct";
 import { useLocation } from "react-router-dom";
 
 const ProductDetail = () => {
   const location = useLocation();
   const product = location.state;
+
+  const [slideIndex, setSlideIndex] = useState(1);
+
+  const plusSlides = (n) => {
+    setSlideIndex((prev) => prev + n);
+    slideShow(slideIndex + n);
+  };
+
+  const slideShow = (n) => {
+    if (n > product.images.length) {
+      setSlideIndex(1);
+    }
+    if (n < 1) {
+      setSlideIndex(product.images.length);
+    }
+  };
 
   return (
     <div>
@@ -26,8 +43,61 @@ const ProductDetail = () => {
                       <div className="colD l-32">
                         <div className="detail">
                           <div className="LSSlideOuter">
-                            <div className="LSSlideWrapper"></div>
-                            <div className="LSPager LSGallery"></div>
+                            <div className="product-page-img">
+                              {product.images.map((image, index) => (
+                                <div
+                                  className="mySlides"
+                                  key={index}
+                                  style={{
+                                    display:
+                                      index + 1 === slideIndex
+                                        ? "block"
+                                        : "none",
+                                  }}
+                                >
+                                  <div className="numbertext">
+                                    {index + 1} / {product.images.length}
+                                    {/* <img src={image} alt="sản phẩm" /> */}
+                                    <div
+                                      className="product-item-img"
+                                      style={{
+                                        backgroundImage: `url(${image})`,
+                                      }}
+                                    ></div>
+                                  </div>
+                                </div>
+                              ))}
+
+                              <a
+                                // href="/productDetail/#!"
+                                className="prev"
+                                onClick={() => plusSlides(-1)}
+                              >
+                                &#10094;
+                              </a>
+                              <a
+                                // href="/productDetail/#!"
+                                className="next"
+                                onClick={() => plusSlides(1)}
+                              >
+                                &#10095;
+                              </a>
+
+                              <div className="slider-img">
+                                {product.images.map((image, index) => (
+                                  <div
+                                    key={index}
+                                    className={`slider-box ${
+                                      index + 1 === slideIndex && "active"
+                                    }`}
+                                    onClick={() => setSlideIndex(index + 1)}
+                                  >
+                                    <img src={image} alt="sản phẩm" />
+                                  </div>
+                                ))}
+                              </div>
+                            </div>
+                            <div className="product-page-details"></div>
                           </div>
                         </div>
                       </div>
@@ -157,7 +227,7 @@ const ProductDetail = () => {
                     </div>
                   </div>
                 </div>
-                <div className="block-tab-description-prod"></div>
+                <InfoProduct product={product} />
                 <div className="clear40"></div>
                 <div className="block-list-prod-best"></div>
               </div>

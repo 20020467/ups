@@ -8,7 +8,14 @@ import "../../css/home.css";
 function Home() {
   const [products, setProducts] = useState([
     {
-      img: "",
+      price: 7600000,
+      images: [
+        "https://res.cloudinary.com/dx67cp5hj/image/private/s--MPvlQdI1--/v1684596388/ezqvjuhd9ouorf8cyceq.png",
+        "https://res.cloudinary.com/dx67cp5hj/image/private/s--D9mrQM7u--/v1684596394/fb9avoubep3evduoasnm.png",
+        // "https://res.cloudinary.com/dx67cp5hj/image/private/s--axjIjyXO--/v1684596400/czz22q2r0afn1gyjyagc.png",
+        // "https://res.cloudinary.com/dx67cp5hj/image/private/s--xI3XnEmU--/v1684596403/z5j5ffyuk7sq3qzvwuda.png",
+        // "https://res.cloudinary.com/dx67cp5hj/image/private/s--hS-KP_-2--/v1684596407/ndaltv0pq4nqe7pdkk54.png",
+      ],
       name: "BỘ LƯU ĐIỆN UPS PROLINK PRO910WS 10000VA",
       theFirm: "Prolink",
       code: "PRO910WS",
@@ -18,7 +25,14 @@ function Home() {
       guarantee: 24,
     },
     {
-      img: "",
+      price: 7600000,
+      images: [
+        "https://res.cloudinary.com/dx67cp5hj/image/private/s--MPvlQdI1--/v1684596388/ezqvjuhd9ouorf8cyceq.png",
+        "https://res.cloudinary.com/dx67cp5hj/image/private/s--D9mrQM7u--/v1684596394/fb9avoubep3evduoasnm.png",
+        "https://res.cloudinary.com/dx67cp5hj/image/private/s--axjIjyXO--/v1684596400/czz22q2r0afn1gyjyagc.png",
+        "https://res.cloudinary.com/dx67cp5hj/image/private/s--xI3XnEmU--/v1684596403/z5j5ffyuk7sq3qzvwuda.png",
+        "https://res.cloudinary.com/dx67cp5hj/image/private/s--hS-KP_-2--/v1684596407/ndaltv0pq4nqe7pdkk54.png",
+      ],
       name: "BỘ LƯU ĐIỆN UPS PROLINK PRO910WS 10000VA",
       theFirm: "Prolink",
       code: "PRO910WS",
@@ -28,7 +42,14 @@ function Home() {
       guarantee: 24,
     },
     {
-      img: "",
+      price: 7600000,
+      images: [
+        "https://res.cloudinary.com/dx67cp5hj/image/private/s--MPvlQdI1--/v1684596388/ezqvjuhd9ouorf8cyceq.png",
+        "https://res.cloudinary.com/dx67cp5hj/image/private/s--D9mrQM7u--/v1684596394/fb9avoubep3evduoasnm.png",
+        "https://res.cloudinary.com/dx67cp5hj/image/private/s--axjIjyXO--/v1684596400/czz22q2r0afn1gyjyagc.png",
+        "https://res.cloudinary.com/dx67cp5hj/image/private/s--xI3XnEmU--/v1684596403/z5j5ffyuk7sq3qzvwuda.png",
+        "https://res.cloudinary.com/dx67cp5hj/image/private/s--hS-KP_-2--/v1684596407/ndaltv0pq4nqe7pdkk54.png",
+      ],
       name: "BỘ LƯU ĐIỆN UPS PROLINK PRO910WS 10000VA",
       theFirm: "Prolink",
       code: "PRO910WS",
@@ -38,7 +59,14 @@ function Home() {
       guarantee: 24,
     },
     {
-      img: "",
+      price: 7600000,
+      images: [
+        "https://res.cloudinary.com/dx67cp5hj/image/private/s--MPvlQdI1--/v1684596388/ezqvjuhd9ouorf8cyceq.png",
+        "https://res.cloudinary.com/dx67cp5hj/image/private/s--D9mrQM7u--/v1684596394/fb9avoubep3evduoasnm.png",
+        "https://res.cloudinary.com/dx67cp5hj/image/private/s--axjIjyXO--/v1684596400/czz22q2r0afn1gyjyagc.png",
+        "https://res.cloudinary.com/dx67cp5hj/image/private/s--xI3XnEmU--/v1684596403/z5j5ffyuk7sq3qzvwuda.png",
+        "https://res.cloudinary.com/dx67cp5hj/image/private/s--hS-KP_-2--/v1684596407/ndaltv0pq4nqe7pdkk54.png",
+      ],
       name: "BỘ LƯU ĐIỆN UPS PROLINK PRO910WS 10000VA",
       theFirm: "Prolink",
       code: "PRO910WS",
@@ -48,7 +76,14 @@ function Home() {
       guarantee: 24,
     },
     {
-      img: "",
+      price: 7600000,
+      images: [
+        "https://res.cloudinary.com/dx67cp5hj/image/private/s--MPvlQdI1--/v1684596388/ezqvjuhd9ouorf8cyceq.png",
+        "https://res.cloudinary.com/dx67cp5hj/image/private/s--D9mrQM7u--/v1684596394/fb9avoubep3evduoasnm.png",
+        "https://res.cloudinary.com/dx67cp5hj/image/private/s--axjIjyXO--/v1684596400/czz22q2r0afn1gyjyagc.png",
+        "https://res.cloudinary.com/dx67cp5hj/image/private/s--xI3XnEmU--/v1684596403/z5j5ffyuk7sq3qzvwuda.png",
+        "https://res.cloudinary.com/dx67cp5hj/image/private/s--hS-KP_-2--/v1684596407/ndaltv0pq4nqe7pdkk54.png",
+      ],
       name: "BỘ LƯU ĐIỆN UPS PROLINK PRO910WS 10000VA",
       theFirm: "Prolink",
       code: "PRO910WS",

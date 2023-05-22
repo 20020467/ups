@@ -12,6 +12,7 @@
   position: relative;
 }
 
+/* image */
 .LSSlideOuter {
   overflow: hidden;
   -webkit-touch-callout: none;
@@ -28,6 +29,132 @@
   position: relative;
 }
 
+.product-page-img {
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+
+  transition-duration: 400ms;
+  transition-timing-function: ease;
+}
+
+mySlides numbertext .mySlides {
+  position: relative;
+  height: 355px;
+  width: 100%;
+}
+
+.mySlides .numbertext {
+  color: #000;
+  font-size: 12px;
+  width: 100%;
+  max-width: 355px;
+}
+
+@media (min-width: 410px) and (max-width: 766px) {
+  .mySlides .numbertext {
+    color: #000;
+    font-size: 12px;
+    width: 100%;
+    margin: auto;
+  }
+}
+
+.mySlides img {
+  width: 100%;
+  height: 100%;
+  min-height: 355px;
+  display: block;
+  object-fit: cover;
+}
+
+.product-item-img {
+  padding-top: 100%;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+}
+
+.product-page-img .prev,
+.product-page-img .next {
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: auto;
+  padding: 10px;
+  margin-top: -50px;
+  color: white;
+  font-weight: bold;
+  font-size: 20px;
+  border-radius: 0 3px 3px 0;
+  user-select: none;
+}
+
+.product-page-img .next {
+  right: 0;
+  border-radius: 3px 0 0 3px;
+}
+
+.product-page-img .prev:hover,
+.product-page-img .next:hover {
+  background: rgba(0, 0, 0, 0.8);
+}
+
+.product-page-img .slider-img {
+  width: 100%;
+  height: 100px;
+  margin-top: 60px;
+  overflow-x: scroll;
+  display: flex;
+  user-select: none;
+
+  transition-duration: 400ms;
+  transform: translate3d(0px, 0px, 0px);
+}
+
+.product-page-img .slider-img::-webkit-scrollbar {
+  display: none;
+}
+
+.product-page-img .slider-img {
+  width: 100%;
+  height: 100%;
+}
+
+.product-page-img .slider-box {
+  width: 100%;
+  height: 66.25px;
+  min-width: 66.25px;
+  max-width: 66.25px;
+  margin-right: 30px;
+  cursor: pointer;
+  overflow: hidden;
+  border: 2px solid #ddd;
+  border-radius: 5px;
+}
+
+.product-page-img .slider-img .slider-box img {
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  object-fit: cover;
+  display: block;
+}
+
+.product-page-img .slider-img .slider-box:hover {
+  border: 2px solid teal;
+  opacity: 1;
+  border-radius: 5px;
+}
+
+.product-page-img .slider-img .slider-box.active {
+  border: 2px solid #a40606;
+  opacity: 1;
+  border-radius: 5px;
+}
+
+/* info product */
 .name-prod-detail {
   font-family: "Arial";
   /* font-family: Arial, "Helvetica Neue", Helvetica, sans-serif; */

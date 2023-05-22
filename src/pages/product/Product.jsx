@@ -8,13 +8,19 @@ const Product = ({ product }) => {
       <div className="item">
         <div className="img-prod">
           <NavLink
-            style={{ textDecoration: "none" }}
+            style={{ textDecoration: "none", width: "100%" }}
             to={{
               pathname: "/productDetail",
             }}
             state={product}
           >
-            <img alt="logo" src="./PRO910WS.jpg" />
+            {/* <img alt="logo" src={product.images[4]} /> */}
+            <div
+              className="product-item-img"
+              style={{
+                backgroundImage: `url(${product.images[4]})`,
+              }}
+            ></div>
           </NavLink>
 
           <div className="view-buy">

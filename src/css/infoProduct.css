@@ -1,0 +1,37 @@
+.block-tab-description-prod {
+  height: 100px;
+}
+
+.block-tab-description-prod .nav-tabs {
+  border: none;
+}
+
+.nav-tabs > li {
+  float: left;
+  margin-bottom: -1px;
+  position: relative;
+  display: block;
+  cursor: pointer;
+  padding: 10px 15px;
+}
+
+.nav-tabs > li > a:hover {
+  border-color: #ddd;
+}
+
+.nav > li:focus,
+.nav > li:hover {
+  text-decoration: none;
+  background-color: #eee;
+}
+
+.block-tab-description-prod .nav-tabs > li.active {
+  background: #f5f5f5;
+}
+
+.block-tab-description-prod .nav-tabs > li {
+  border: none !important;
+  font-size: 18px;
+  font-family: avertabold;
+  color: #000;
+}
