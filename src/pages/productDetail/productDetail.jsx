@@ -128,7 +128,31 @@ const ProductDetail = () => {
 
                       {/* copy right */}
                       <div className="colD l-23">
-                        <div className="detail">copy right</div>
+                        <div className="detail">
+                          <div className="block-commitment">
+                            <p className="tit-right-idp">Chính sách bán hàng</p>
+
+                            <div className="line-ridp">
+                              <img src="./img/ionicons-v5-e.svg"></img>
+                              <p>Bảo hành tại nơi sử dụng</p>
+                            </div>
+
+                            <div className="line-ridp">
+                              <img src="./img/setting.svg"></img>
+                              <p>Sửa chữa chi phí rẻ nhất</p>
+                            </div>
+
+                            <div className="line-ridp">
+                              <img src="./img/ship.svg"></img>
+                              <p>Miễn phí giao hàng</p>
+                            </div>
+
+                            <div className="line-ridp">
+                              <img src="./img/baohanh.svg"></img>
+                              <p>Cam kết hàng chính hãng 100%</p>
+                            </div>
+                          </div>
+                        </div>
                       </div>
                     </div>
                   </div>
