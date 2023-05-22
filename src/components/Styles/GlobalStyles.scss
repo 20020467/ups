@@ -23,8 +23,6 @@ html {
 //     margin: 0 auto;
 // }
 
-
-
 body {
     font-family: 'Roboto', sans-serif;
     font-size: 1.6rem;
@@ -34,4 +32,41 @@ body {
 
 img {
     max-width: 100%;
+}
+
+a {
+    color: #337ab7;
+    text-decoration: none;
+}
+
+.h1,
+.h2,
+.h3,
+.h4,
+.h5,
+.h6,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: inherit;
+    font-weight: 500;
+    line-height: 1.1;
+    color: inherit;
+}
+
+.clear20 {
+    clear: both;
+    height: 20px;
+}
+
+.clea40 {
+    clear: both;
+    height:40px;
+}
+
+.colD {
+    background: orange;
 }
