@@ -8,8 +8,6 @@ const ProductDetail = () => {
   const location = useLocation();
   const product = location.state;
 
-  // Sử dụng dữ liệu sản phẩm ở đây
-  console.log(product);
   return (
     <div>
       <Header />
@@ -38,16 +36,93 @@ const ProductDetail = () => {
                       <div className="colD l-45">
                         <div className="detail">
                           <h1 className="name-prod-detail">{product.name}</h1>
+
+                          {/* theFirm */}
                           <div className="code-status">
-                            <div className="cate-of-prod">
-                              <i></i>" Hãng: "
+                            <p className="cate-of-prod">
+                              <i></i> Hãng:
                               <b>
-                                <a href="">Prolink</a>
+                                <a style={{ color: "#ed1c24" }} href="">
+                                  {" " + product.theFirm}
+                                </a>
                               </b>
-                            </div>
+                            </p>
                           </div>
-                          <div className="code-status"></div>
-                          <div className="short-des-prod"></div>
+
+                          {/* code - status */}
+                          <div className="code-status">
+                            <p className="code-prod-detail">
+                              <span className="bold">Mã sản phẩm: </span>
+                              {" " + product.code}
+                            </p>
+                            <p
+                              className={
+                                product.status == "Còn hàng"
+                                  ? "status-prod-stocking"
+                                  : "status-prod-out"
+                              }
+                            >
+                              Tình trạng:{" "}
+                              <b>
+                                <span>{product.status}</span>
+                              </b>
+                            </p>
+                          </div>
+
+                          {/* Liên hệ */}
+                          <div className="box-pri-prod">
+                            <p className="code-prod">
+                              <span className="bold">Liên hệ:</span>
+                              <span
+                                style={{
+                                  color: "#a40606",
+                                  fontWeight: "700",
+                                  marginLeft: 15,
+                                }}
+                              >
+                                {"  "}
+                                0358179025
+                              </span>
+                            </p>
+                          </div>
+
+                          {/* des prod */}
+                          <div className="short-des-prod">
+                            <ul className="custom-attributes">
+                              <li className="cong-suat">
+                                <span className="attribute-label">
+                                  <span className="attribute-label-text">
+                                    Công suất:
+                                  </span>
+                                </span>
+                                <span className="attribute-value">
+                                  {"  " + product.wattage}
+                                </span>
+                              </li>
+
+                              <li className="xuat-xu">
+                                <span className="attribute-label">
+                                  <span className="attribute-label-text">
+                                    Xuất xứ:
+                                  </span>
+                                </span>
+                                <span className="attribute-value">
+                                  {"  " + product.origin}
+                                </span>
+                              </li>
+
+                              <li className="bao-hanh">
+                                <span className="attribute-label">
+                                  <span className="attribute-label-text">
+                                    Bảo hành:
+                                  </span>
+                                </span>
+                                <span className="attribute-value">
+                                  {"  " + product.guarantee + " tháng"}
+                                </span>
+                              </li>
+                            </ul>
+                          </div>
                         </div>
                       </div>
 

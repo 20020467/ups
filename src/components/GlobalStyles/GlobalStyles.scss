@@ -69,6 +69,28 @@ h6 {
     height:40px;
 }
 
-.colD {
-    background: orange;
+// .colD {
+//     background: orange;
+// }
+
+b,
+strong {
+    font-weight: 700;
+}
+
+body p {
+    font-size: 15px;
+    margin: 0;
+    // font-family: averta;
+}
+
+ol,
+ul {
+    margin-top: 0;
+    margin-bottom: 10px;
+}
+
+li {
+    display: list-item;
+    text-align: -webkit-match-parent;
 }
