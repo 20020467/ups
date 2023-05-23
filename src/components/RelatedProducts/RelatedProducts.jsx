@@ -1,12 +1,10 @@
 import React, { useState } from "react";
-import Header from "../../components/header/header";
-import SideBar from "../../components/sidebar/SideBar";
-import Product from "../product/Product";
-import Footer from "../../components/footer/footer";
-import "../../css/home.css";
-// import "../../css/grid.css";
+import "../../css/relatedProducts.css";
+import Product from "../../pages/product/Product.jsx";
 
-function Home() {
+const RelatedProducts = ({ productCategory }) => {
+  //   console.log(product);
+
   const [products, setProducts] = useState([
     {
       id: 1,
@@ -105,31 +103,15 @@ function Home() {
   ]);
 
   return (
-    <div>
-      <Header />
-      <div className="main-wraper">
-        <div className="clear20"></div>
-
-        <div className="container">
-          <div className="grid wide">
-            <div className="row">
-              <SideBar />
-              <div className="col l-7-6 m-12 c-12">
-                <div className="content">
-                  <div className="row">
-                    {products.map((item, index) => {
-                      return <Product key={index} product={item} />;
-                    })}
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+    <div className="block-list-prod-best">
+      <h3 class="tit-prod-best">Sản phẩm liên quan</h3>
+      <div className="block-slider-prod-top">
+        {products?.map((product, index) => {
+          return <Product key={index} product={product} />;
+        })}
       </div>
-      <Footer />
     </div>
   );
-}
+};
 
-export default Home;
+export default RelatedProducts;

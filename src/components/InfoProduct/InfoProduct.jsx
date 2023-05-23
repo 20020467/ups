@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "../../css/infoProduct.css";
+import Specifications from "../Specifications/Specifications";
 
 const InfoProduct = ({ product }) => {
   const [toggleState, setToggleState] = useState(1);
@@ -33,6 +34,7 @@ const InfoProduct = ({ product }) => {
 
       <div className="tab-content">
         <div
+          id="td1"
           className={
             toggleState === 1
               ? "tab-pane fade active-content in"
@@ -44,23 +46,23 @@ const InfoProduct = ({ product }) => {
         </div>
 
         <div
+          id="td2"
           className={
             toggleState === 2
               ? "tab-pane fade active-content in"
               : "tab-pane fade"
           }
         >
-          tab 2
+          <Specifications />
         </div>
         <div
+          id="td3"
           className={
             toggleState === 3
               ? "tab-pane fade active-content in"
               : "tab-pane fade"
           }
-        >
-          tab 3
-        </div>
+        ></div>
       </div>
     </div>
   );
