@@ -149,14 +149,14 @@ const SideBar = () => {
                         </div>
                     </div>
                 
-                    <ul className="list-cate-aside" id={value.name}>
+                    <ul className="list-cate-aside hide" id={value.name}>
                         {value.children.map(val1 => {
                             if (val1.children.length > 0) 
                                 return (
                                     <li className="has-sub-aside">                                       
                                         <a href={val1.href}><i class="ri-arrow-right-s-fill"></i> {val1.name}</a>
                                         <a className="show-sub-aside" href='#a' onClick={handleShowSubAsideClick}><i class="ri-arrow-down-s-line"></i></a>                                                                       
-                                        <ul className="ul-sub-aside" id={val1.name}>
+                                        <ul className="ul-sub-aside hide" id={val1.name}>
                                             {val1.children.map(val2 => (
                                                 <li><i class="ri-arrow-right-s-line"></i> <a href={val2.href}>{val2.name}</a></li>
                                             ))}
