@@ -39,9 +39,8 @@ const InfoProduct = ({ product }) => {
               : "tab-pane fade"
           }
         >
-          {/* <p>{product.description}</p>
-          <pre>{product.feature}</pre> */}
-          tab 1
+          <p>{product.description}</p>
+          <pre>{product.feature}</pre>
         </div>
 
         <div
