@@ -3,8 +3,6 @@ import "../../css/relatedProducts.css";
 import Product from "../../pages/product/Product.jsx";
 
 const RelatedProducts = ({ productCategory }) => {
-  //   console.log(product);
-
   const [products, setProducts] = useState([
     {
       id: 1,
