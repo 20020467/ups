@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Header from "../../components/header/header";
 import SideBar from "../../components/sidebar/SideBar";
 import Product from "../product/Product";
+import Footer from "../../components/footer/footer";
 import "../../css/home.css";
 // import "../../css/grid.css";
 
@@ -121,6 +122,7 @@ function Home() {
           </div>
         </div>
       </div>
+      <Footer/>
     </div>
   );
 }
