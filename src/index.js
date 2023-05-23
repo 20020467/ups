@@ -13,7 +13,7 @@ root.render(
       <App />
     </GlobalStyles>
     <AdminStyles>
-      <Admin/>
+      <Admin />
     </AdminStyles>
   </React.StrictMode>
 );

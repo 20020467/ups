@@ -2,9 +2,9 @@
   margin-bottom: 40px;
 }
 
-.detail {
+/* .detail {
   min-height: 450px;
-}
+} */
 .colD .l-32 .l-45 .l-23 {
   padding: 0 15px;
   float: left;
@@ -216,6 +216,11 @@ mySlides numbertext .mySlides {
 .custom-attributes {
   padding-left: 40px;
   font-size: 15px;
+}
+
+.custom-attributes > li {
+  list-style-type: disc; /* Kiểu dấu chấm */
+  display: list-item;
 }
 
 .block-commitment {

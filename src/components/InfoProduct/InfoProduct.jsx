@@ -1,17 +1,68 @@
-import React from "react";
+import React, { useState } from "react";
 import "../../css/infoProduct.css";
 
 const InfoProduct = ({ product }) => {
-  console.log(product);
+  const [toggleState, setToggleState] = useState(1);
+
+  const toggleTab = (index) => {
+    setToggleState(index);
+  };
 
   return (
     <div className="block-tab-description-prod">
-      <ul className="nav-tabs">
-        <li>Mô tả sản phẩm</li>
-        <li>Chức năng</li>
-        <li>Thông số kỹ thuật</li>
+      <ul className="nav nav-tabs">
+        <li
+          className={toggleState === 1 ? "active-tabs" : ""}
+          onClick={() => toggleTab(1)}
+        >
+          Mô tả sản phẩm
+        </li>
+        <li
+          className={toggleState === 2 ? "active-tabs" : ""}
+          onClick={() => toggleTab(2)}
+        >
+          Thông số kỹ thuật
+        </li>
+        <li
+          className={toggleState === 3 ? "active-tabs" : ""}
+          onClick={() => toggleTab(3)}
+        >
+          Tài liệu
+        </li>
       </ul>
-      <div className="tab-content"></div>
+
+      <div className="tab-content">
+        <div
+          className={
+            toggleState === 1
+              ? "tab-pane fade active-content in"
+              : "tab-pane fade"
+          }
+        >
+          {/* <p>{product.description}</p>
+          <pre>{product.feature}</pre> */}
+          tab 1
+        </div>
+
+        <div
+          className={
+            toggleState === 2
+              ? "tab-pane fade active-content in"
+              : "tab-pane fade"
+          }
+        >
+          tab 2
+        </div>
+        <div
+          className={
+            toggleState === 3
+              ? "tab-pane fade active-content in"
+              : "tab-pane fade"
+          }
+        >
+          tab 3
+        </div>
+      </div>
     </div>
   );
 };
