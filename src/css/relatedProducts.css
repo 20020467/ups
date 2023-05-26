@@ -1,0 +1,26 @@
+.block-list-prod-best {
+  position: relative;
+}
+
+.tit-prod-best {
+  font-size: 20px;
+  font-family: "Arial";
+  font-weight: 600;
+  margin: 0;
+  border-left: 9px solid #a40606;
+  border-radius: 3px 0 0 3px;
+  text-transform: uppercase;
+  padding: 5px 0 7px 10px;
+  border-bottom: 1px solid #b7b7b7;
+  margin-bottom: 20px;
+}
+
+.block-slider-prod-top {
+  min-height: 120px;
+  display: flex;
+  overflow-x: auto;
+}
+
+.block-slider-prod-top::-webkit-scrollbar {
+  width: 0;
+}

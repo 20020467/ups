@@ -1,85 +1,64 @@
 import React from "react";
 import "../../css/product.css";
-import { NavLink } from "react-router-dom";
 
 const Product = ({ product }) => {
   return (
     <div className="col l-3 m-6 c-6">
       <div className="item">
         <div className="img-prod">
-          <NavLink
-            style={{ textDecoration: "none" }}
-            to={{
-              pathname: "/productDetail",
-            }}
-            state={product}
+          <a
+            style={{ textDecoration: "none", width: "100%" }}
+            href={"/productDetail/" + product.id}
           >
-            <img alt="logo" src="./PRO910WS.jpg" />
-          </NavLink>
+            <div
+              className="product-item-img"
+              style={{
+                backgroundImage: `url(${product.images[0]})`,
+              }}
+            ></div>
+          </a>
 
           <div className="view-buy">
-            <NavLink
+            <a
               style={{ textDecoration: "none" }}
-              to={{
-                pathname: "/productDetail",
-              }}
-              state={product}
+              href={"/productDetail/" + product.id}
             >
               <span className="view-prod">Chi tiết</span>
-            </NavLink>
-            <NavLink
+            </a>
+            <a
               style={{ textDecoration: "none" }}
-              to={{
-                pathname: "/productDetail",
-              }}
-              state={product}
+              href={"/productDetail/" + product.id}
             >
               <span className="buy-prod">Mua hàng</span>
-            </NavLink>
+            </a>
           </div>
         </div>
 
         <div className="info-prod">
           <h4 className="prod-name">
-            <a
-              href={{
-                pathname: "/productDetail",
-              }}
-              state={product}
-            >
+            <a href={"/productDetail/" + product.id}>
               <span>{product.name}</span>
             </a>
           </h4>
           <p className="code-prod">
-            <NavLink
-              style={{ textDecoration: "none" }}
-              to={{
-                pathname: "/productDetail",
-              }}
-              state={product}
-            ></NavLink>
-            <span className="bold">Hãng: </span>
             <a
-              href={{
-                pathname: "/productDetail",
-              }}
-              state={product}
+              style={{ textDecoration: "none" }}
+              href={"/productDetail/" + product.id}
             >
-              {product.theFirm}
+              <i />{" "}
             </a>
+            <span className="bold">Hãng: </span>
+            <a href={"/productDetail/" + product.id}>{product.theFirm}</a>
           </p>
-          <NavLink
+          <a
             style={{ textDecoration: "none", color: "#000" }}
-            to={{
-              pathname: "/productDetail",
-            }}
-            state={product}
+            href={"/productDetail/" + product.id}
           >
             <p className="code-prod">
               <span className="bold">Mã SP: </span>
               {product.code}
             </p>
-          </NavLink>
+          </a>
         </div>
       </div>
     </div>

@@ -3,7 +3,7 @@
   /* font-size: 40; */
   /* color: #fff; */
   /* text-align: center; */
-  min-height: 420px;
+  /* min-height: 420px; */
   /* background: orange; */
 
   border: 1px solid #b7b7b7;
@@ -15,12 +15,23 @@
 .img-prod {
   position: relative;
   overflow: hidden;
+  background-color: white;
+  width: 100%;
 }
 
-.img-prod > a > img {
+/* bg color the cha */
+
+.product-item-img {
+  padding-top: 100%;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+}
+
+/* .img-prod > a > img {
   width: 100%;
   border-radius: 4px;
-}
+} */
 
 .view-buy {
   display: flex;
