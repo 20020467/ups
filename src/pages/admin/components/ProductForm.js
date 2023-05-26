@@ -1,5 +1,5 @@
 import {useEffect, useState} from "react";
-//import Spinner from "../components/Spinner";
+import Spinner from "./Spinner";
 import {ReactSortable} from "react-sortablejs";
 import { useNavigate } from 'react-router-dom';
 
@@ -67,25 +67,25 @@ export default function ProductForm({
         navigate('/admin/products')
     }
 
-    // async function uploadImages(ev) {
-    //     const files = ev.target?.files;
-    //     if (files?.length > 0) {
-    //         setIsUploading(true);
-    //         const data = new FormData();
-    //         for (const file of files) {
-    //             data.append('file', file);
-    //         }
-    //         const res = await axios.post('/api/upload', data);
-    //         setImages(oldImages => {
-    //             return [...oldImages, ...res.data.links];
-    //         });
-    //         setIsUploading(false);
-    //     }
-    // }
+    async function uploadImages(ev) {
+        const files = ev.target?.files;
+        if (files?.length > 0) {
+            setIsUploading(true);
+            const data = new FormData();
+            for (const file of files) {
+                data.append('file', file);
+            }
+            const res = {}
+            setImages(oldImages => {
+                return [...oldImages, ...res.data.links];
+            });
+            setIsUploading(false);
+        }
+    }
 
-    // function updateImagesOrder(images) {
-    //     setImages(images);
-    // }
+    function updateImagesOrder(images) {
+        setImages(images);
+    }
     
     return (
         <form onSubmit={saveProduct}>
@@ -114,14 +114,13 @@ export default function ProductForm({
         </select>
 
         <label>Trạng thái</label>
-        <select value={status} onChange={ev => setStatus(ev.target.value)}>
-            <option value="">Không có danh mục cha</option>
-            {categories.length > 0 && categories.map(category => (
-                <option key={category._id} value={category._id}>{category.name}</option>
-            ))}
+        <select value={status}
+                onChange={ev => setStatus(ev.target.value)}>
+          <option value={true} onClick={() => setStatus(true)}>Còn hàng</option>
+          <option value={false} onClick={() => setStatus(false)}>Hết hàng</option>
         </select>
 
-        {/* <label>Hình ảnh</label>
+        <label>Hình ảnh</label>
         <div className="mb-2 flex flex-wrap gap-1">
             <ReactSortable
                 list={images}
@@ -144,7 +143,7 @@ export default function ProductForm({
                 </div>
                 <input type="file" onChange={uploadImages} className="hidden"/>
             </label>
-        </div> */}
+        </div>
 
         <label>Mô tả sản phẩm</label>
         <textarea

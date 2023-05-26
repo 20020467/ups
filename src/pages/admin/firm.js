@@ -111,7 +111,6 @@ const Firm = () => {
                         {firms.length > 0 && firms.map(firm => (
                             <tr key={firm._id}>
                                 <td>{firm.name}</td>
-                                <td>{firm?.parent?.name}</td>
                                 <td>
                                     <button onClick={() => editFirm(firm)}  className="btn-default mr-1">Sửa</button>
                                     <button onClick={() => deleteFirm(firm)} className="btn-red">Xóa</button>
