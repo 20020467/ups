@@ -1,7 +1,54 @@
-import React from "react";
+import React, { useState } from "react";
 import "../../css/Specifications.css";
 
 const Specifications = () => {
+  const [info, setInfo] = useState({
+    id: "1",
+    productID: "1",
+
+    // Thông số chung
+    cong_suat: "650VA/360W",
+
+    // Thông số đầu vào
+    dai_dien_ap: "140 - 300VAC ± 5%",
+    tan_so_vao: "50Hz/60Hz (tự động cảm ứng)",
+    so_pha: "1 pha + tiếp địa",
+
+    //Thông số đầu ra
+    dien_ap: "230 VAC +12% - 14%",
+    dien_ap_che_do_ac_quy: "230VAC ±10%",
+    tan_so_ra: "50Hz ±1% (chế độ ắc quy)",
+    dang_song:
+      "Sóng sine mô phỏng (chế độ ắc quy) \nóng sine chuẩn (chế độ AC)",
+    thoi_gian_chuyen_mach: "2 ms",
+
+    //Thông số ắc quy
+    loai_ac_quy: "12V8.2Ah",
+    thoi_gian_sac: "2 - 4 tiếng đạt 90% dung lượng",
+
+    //Chức năng bảo vệ
+    bv_ngan_mach: "Có",
+    bv_xung: "Có",
+    canh_bao: "Âm thanh và đèn LED",
+    bv_qua_tai:
+      "Chế độ line: 100 - 120% trong 5 phút chuyển cảnh báo lỗi \n> 120% chuyển cảnh báo lỗi ngay lập tức \nChế độ ắc quy: 100 - 120% tắt sau 5 giây \n> 120% tắt ngay lập tức",
+    quan_ly_ac_quy: "Bảo vệ chống quá sạc của ắc quy, nâng cao tuổi thọ ắc quy",
+
+    //Kết nối
+    cong_USB:
+      "Báo lỗi mất điện đầu vào, báo lỗi ắc quy yếu, điều khiển tắt UPS, tắt PC",
+
+    //Môi trường hoạt động
+    do_on_hd: "< 40 dB",
+    nhiet_do_hd: "0˚C - 40˚C",
+    do_am_hd: "0 - 90%",
+    he_so_cong_suat: "tối đa 0.7",
+
+    //Thông số vật lý
+    kich_thuoc: "279 x 101 x 142 mm",
+    trong_luong: "4.2kg",
+  });
+
   return (
     <div className="editer">
       <table
@@ -13,67 +60,267 @@ const Specifications = () => {
       >
         <tbody>
           <tr>
-            <td>
+            <td colSpan="2">
               <span style={{ color: "rgb(0, 0, 0)" }}>
-                <strong>MODEL</strong>
-              </span>
-            </td>
-            <td>
-              <span style={{ color: "rgb(0, 0, 0)" }}>
-                <strong>PRO902S</strong>
+                <strong>Thông số chung</strong>
               </span>
             </td>
           </tr>
           <tr>
             <td>
-              <span style={{ color: "rgb(0, 0, 0)" }}>Dung lượng</span>
+              <span style={{ color: "rgb(0, 0, 0)" }}>Công suất</span>
             </td>
             <td>
-              <span style={{ color: "rgb(0, 0, 0)" }}>2000VA/1600W</span>
+              <span style={{ color: "rgb(0, 0, 0)" }}>{info.cong_suat}</span>
+            </td>
+          </tr>
+          {/* Thông số đầu vào< */}
+          <tr>
+            <td colSpan="2">
+              <span style={{ color: "rgb(0, 0, 0)" }}>
+                <strong>Thông số đầu vào</strong>
+              </span>
             </td>
           </tr>
           <tr>
             <td>
-              <span style={{ color: "rgb(0, 0, 0)" }}>Công nghệ</span>
+              <span style={{ color: "rgb(0, 0, 0)" }}>Dải điện áp</span>
             </td>
             <td>
-              <span style={{ color: "rgb(0, 0, 0)" }}>Online</span>
+              <span style={{ color: "rgb(0, 0, 0)" }}>{info.dai_dien_ap}</span>
             </td>
-          </tr>
+          </tr>{" "}
+          <tr>
+            <td>
+              <span style={{ color: "rgb(0, 0, 0)" }}>Tần số</span>
+            </td>
+            <td>
+              <span style={{ color: "rgb(0, 0, 0)" }}>{info.tan_so_vao}</span>
+            </td>
+          </tr>{" "}
           <tr>
             <td>
               <span style={{ color: "rgb(0, 0, 0)" }}>Số pha</span>
             </td>
             <td>
-              <span style={{ color: "rgb(0, 0, 0)" }}>1 pha vào/1 pha ra</span>
+              <span style={{ color: "rgb(0, 0, 0)" }}>{info.so_pha}</span>
             </td>
           </tr>
-          <tr>
-            <td>
-              <span style={{ color: "rgb(0, 0, 0)" }}>Biến áp cách ly</span>
-            </td>
-            <td>
-              <span style={{ color: "rgb(0, 0, 0)" }}>Tùy chọn</span>
-            </td>
-          </tr>
+          {/* Thông số đầu ra */}
           <tr>
             <td colSpan="2">
               <span style={{ color: "rgb(0, 0, 0)" }}>
-                <strong>THÔNG TIN NGUỒN VÀO</strong>&nbsp;
+                <strong>Thông số đầu ra</strong>
               </span>
             </td>
           </tr>
           <tr>
             <td>
-              <span style={{ color: "rgb(0, 0, 0)" }}>Điện áp AC vào</span>
+              <span style={{ color: "rgb(0, 0, 0)" }}>Điện áp</span>
+            </td>
+            <td>
+              <span style={{ color: "rgb(0, 0, 0)" }}>{info.dien_ap}</span>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <span style={{ color: "rgb(0, 0, 0)" }}>
+                Điện áp chế độ ắc quy
+              </span>
             </td>
             <td>
               <span style={{ color: "rgb(0, 0, 0)" }}>
-                208/220/230/240VAC hoặc 110/115/120/127VAC
+                {info.dien_ap_che_do_ac_quy}
               </span>
             </td>
           </tr>
           <tr>
+            <td>
+              <span style={{ color: "rgb(0, 0, 0)" }}>Tần số</span>
+            </td>
+            <td>
+              <span style={{ color: "rgb(0, 0, 0)" }}>{info.tan_so_ra}</span>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <span style={{ color: "rgb(0, 0, 0)" }}>Dạng sóng</span>
+            </td>
+            <td>
+              <pre style={{ color: "rgb(0, 0, 0)" }}>{info.dang_song}</pre>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <span style={{ color: "rgb(0, 0, 0)" }}>
+                Thời gian chuyển mạch
+              </span>
+            </td>
+            <td>
+              <span style={{ color: "rgb(0, 0, 0)" }}>
+                {info.thoi_gian_chuyen_mach}
+              </span>
+            </td>
+          </tr>
+          {/* Thông số ắc quy */}
+          <tr>
+            <td colSpan="2">
+              <span style={{ color: "rgb(0, 0, 0)" }}>
+                <strong>Thông số ắc quy</strong>
+              </span>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <span style={{ color: "rgb(0, 0, 0)" }}>Loại ắc quy</span>
+            </td>
+            <td>
+              <span style={{ color: "rgb(0, 0, 0)" }}>{info.loai_ac_quy}</span>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <span style={{ color: "rgb(0, 0, 0)" }}>Thời gian sạc</span>
+            </td>
+            <td>
+              <span style={{ color: "rgb(0, 0, 0)" }}>
+                {info.thoi_gian_sac}
+              </span>
+            </td>
+          </tr>
+          {/* Chức năng bảo vệ */}
+          <tr>
+            <td colSpan="2">
+              <span style={{ color: "rgb(0, 0, 0)" }}>
+                <strong>Chức năng bảo vệ</strong>
+              </span>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <span style={{ color: "rgb(0, 0, 0)" }}>Bảo vệ ngắn mạch</span>
+            </td>
+            <td>
+              <span style={{ color: "rgb(0, 0, 0)" }}>{info.bv_ngan_mach}</span>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <span style={{ color: "rgb(0, 0, 0)" }}>Bảo vệ xung</span>
+            </td>
+            <td>
+              <span style={{ color: "rgb(0, 0, 0)" }}>{info.bv_xung}</span>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <span style={{ color: "rgb(0, 0, 0)" }}>Cảnh báo</span>
+            </td>
+            <td>
+              <span style={{ color: "rgb(0, 0, 0)" }}>{info.canh_bao}</span>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <span style={{ color: "rgb(0, 0, 0)" }}>Bảo vệ quá tải</span>
+            </td>
+            <td>
+              <pre style={{ color: "rgb(0, 0, 0)" }}>{info.bv_qua_tai}</pre>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <span style={{ color: "rgb(0, 0, 0)" }}>Quản lý ắc quy</span>
+            </td>
+            <td>
+              <span style={{ color: "rgb(0, 0, 0)" }}>
+                {info.quan_ly_ac_quy}
+              </span>
+            </td>
+          </tr>
+          {/* Kết nối */}
+          <tr>
+            <td colSpan="2">
+              <span style={{ color: "rgb(0, 0, 0)" }}>
+                <strong>Kết nối</strong>
+              </span>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <span style={{ color: "rgb(0, 0, 0)" }}>Cổng USB (tùy chọn)</span>
+            </td>
+            <td>
+              <span style={{ color: "rgb(0, 0, 0)" }}>{info.cong_USB}</span>
+            </td>
+          </tr>
+          {/* Môi trường hoạt động */}
+          <tr>
+            <td colSpan="2">
+              <span style={{ color: "rgb(0, 0, 0)" }}>
+                <strong>Môi trường hoạt động</strong>
+              </span>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <span style={{ color: "rgb(0, 0, 0)" }}>Độ ồn hoạt động</span>
+            </td>
+            <td>
+              <span style={{ color: "rgb(0, 0, 0)" }}>{info.do_on_hd}</span>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <span style={{ color: "rgb(0, 0, 0)" }}>Nhiệt độ hoạt động</span>
+            </td>
+            <td>
+              <span style={{ color: "rgb(0, 0, 0)" }}>{info.nhiet_do_hd}</span>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <span style={{ color: "rgb(0, 0, 0)" }}>Độ ẩm hoạt động</span>
+            </td>
+            <td>
+              <span style={{ color: "rgb(0, 0, 0)" }}>{info.do_am_hd}</span>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <span style={{ color: "rgb(0, 0, 0)" }}>Hệ số công suất</span>
+            </td>
+            <td>
+              <span style={{ color: "rgb(0, 0, 0)" }}>
+                {info.he_so_cong_suat}
+              </span>
+            </td>
+          </tr>
+          {/* Thông số vật lý */}
+          <tr>
+            <td colSpan="2">
+              <span style={{ color: "rgb(0, 0, 0)" }}>
+                <strong>Thông số vật lý</strong>
+              </span>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <span style={{ color: "rgb(0, 0, 0)" }}>Kích thước</span>
+            </td>
+            <td>
+              <span style={{ color: "rgb(0, 0, 0)" }}>{info.kich_thuoc}</span>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <span style={{ color: "rgb(0, 0, 0)" }}>Trọng lượng</span>
+            </td>
+            <td>
+              <span style={{ color: "rgb(0, 0, 0)" }}>{info.trong_luong}</span>
+            </td>
+          </tr>
+          {/* <tr>
             <td>
               <span style={{ color: "rgb(0, 0, 0)" }}>Dải điện áp</span>
             </td>
@@ -109,289 +356,7 @@ const Specifications = () => {
                 </span>
               </p>
             </td>
-          </tr>
-          <tr>
-            <td>
-              <span style={{ color: "rgb(0, 0, 0)" }}>Dải tần số</span>
-            </td>
-            <td>
-              <span style={{ color: "rgb(0, 0, 0)" }}>
-                40~70Hz (Auto Sensing)
-              </span>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <span style={{ color: "rgb(0, 0, 0)" }}>Hệ số công suất</span>
-            </td>
-            <td>
-              <span style={{ color: "rgb(0, 0, 0)" }}>≥ 0.98 (100% load)</span>
-            </td>
-          </tr>
-          <tr>
-            <td colSpan="2">
-              <span style={{ color: "rgb(0, 0, 0)" }}>
-                <strong>THÔNG SỐ NGUỒN RA</strong>&nbsp;
-              </span>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <span style={{ color: "rgb(0, 0, 0)" }}>Điện áp AC ngõ ra</span>
-            </td>
-            <td>
-              <span style={{ color: "rgb(0, 0, 0)" }}>
-                208/220/230/240VAC or 110/115/120/127VAC
-              </span>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <span style={{ color: "rgb(0, 0, 0)" }}>
-                Điều chỉnh điện áp AC (chế độ Ắc quy)
-              </span>
-            </td>
-            <td>
-              <span style={{ color: "rgb(0, 0, 0)" }}>±1%</span>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <span style={{ color: "rgb(0, 0, 0)" }}>Dải tần số đồng bộ</span>
-            </td>
-            <td>
-              <span style={{ color: "rgb(0, 0, 0)" }}>47~53Hz or 57~63Hz</span>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <span style={{ color: "rgb(0, 0, 0)" }}>
-                Dải tần số chế độ Ắc quy
-              </span>
-            </td>
-            <td>
-              <span style={{ color: "rgb(0, 0, 0)" }}>
-                50Hz ±0.25Hz or 60Hz ±0.3Hz
-              </span>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <span style={{ color: "rgb(0, 0, 0)" }}>
-                Thời gian chuyển mạch từ chế độ AC sang Ắc quy
-              </span>
-            </td>
-            <td>
-              <span style={{ color: "rgb(0, 0, 0)" }}>0</span>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <span style={{ color: "rgb(0, 0, 0)" }}>
-                Thời gian chuyển mạch từ Inverter sang Bypass
-              </span>
-            </td>
-            <td>
-              <span style={{ color: "rgb(0, 0, 0)" }}>4ms</span>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <span style={{ color: "rgb(0, 0, 0)" }}>Dạng sóng</span>
-            </td>
-            <td>
-              <span style={{ color: "rgb(0, 0, 0)" }}>sóng sin chuẩn</span>
-            </td>
-          </tr>
-          <tr>
-            <td colSpan="2">
-              <span style={{ color: "rgb(0, 0, 0)" }}>
-                <strong>ẮC QUY</strong>
-              </span>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <span style={{ color: "rgb(0, 0, 0)" }}>Số lượng Ắc quy</span>
-            </td>
-            <td>
-              <span style={{ color: "rgb(0, 0, 0)" }}>4x12V9Ah</span>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <span style={{ color: "rgb(0, 0, 0)" }}>Thời gian nạp sạc</span>
-            </td>
-            <td>
-              <span style={{ color: "rgb(0, 0, 0)" }}>
-                9 giờ đạt 90% dung lượng
-              </span>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <span style={{ color: "rgb(0, 0, 0)" }}>Dòng nạp sạc</span>
-            </td>
-            <td>
-              <span style={{ color: "rgb(0, 0, 0)" }}>1A</span>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <span style={{ color: "rgb(0, 0, 0)" }}>Điện áp nạp sạc</span>
-            </td>
-            <td>
-              <span style={{ color: "rgb(0, 0, 0)" }}>54.7VDC ±1%</span>
-            </td>
-          </tr>
-          <tr>
-            <td colSpan="2">
-              <span style={{ color: "rgb(0, 0, 0)" }}>
-                <strong>HIỆU SUẤT</strong>
-              </span>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <span style={{ color: "rgb(0, 0, 0)" }}>Chế độ AC</span>
-            </td>
-            <td>
-              <span style={{ color: "rgb(0, 0, 0)" }}>&gt; 89.3%</span>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <span style={{ color: "rgb(0, 0, 0)" }}>Chế độ Ắc quy</span>
-            </td>
-            <td>
-              <span style={{ color: "rgb(0, 0, 0)" }}>88.2%</span>
-            </td>
-          </tr>
-          <tr>
-            <td colSpan="2">
-              <span style={{ color: "rgb(0, 0, 0)" }}>
-                <strong>CHỈ THỊ &amp; CẢNH BÁO</strong>
-              </span>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <span style={{ color: "rgb(0, 0, 0)" }}>Màn hình LCD</span>
-            </td>
-            <td>
-              <span style={{ color: "rgb(0, 0, 0)" }}>
-                Hiển thị trạng thái UPS, mức tải, mức Ắc quy, điện áp vào/ra, bộ
-                định thời ngắt sạc, các điều kiện xảy ra lỗi.
-              </span>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <span style={{ color: "rgb(0, 0, 0)" }}>Chế độ Ắc quy</span>
-            </td>
-            <td>
-              <span style={{ color: "rgb(0, 0, 0)" }}>
-                Phát âm thanh mỗi 4 giây.
-              </span>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <span style={{ color: "rgb(0, 0, 0)" }}>Ắc quy yếu</span>
-            </td>
-            <td>
-              <span style={{ color: "rgb(0, 0, 0)" }}>
-                Phát âm thanh mỗi giây.
-              </span>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <span style={{ color: "rgb(0, 0, 0)" }}>Quá tải</span>
-            </td>
-            <td>
-              <span style={{ color: "rgb(0, 0, 0)" }}>
-                Phát âm thanh 2 lần mỗi giây.
-              </span>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <span style={{ color: "rgb(0, 0, 0)" }}>Lỗi</span>
-            </td>
-            <td>
-              <span style={{ color: "rgb(0, 0, 0)" }}>
-                Phát âm thanh liên tục.
-              </span>
-            </td>
-          </tr>
-          <tr>
-            <td colSpan="2">
-              <span style={{ color: "rgb(0, 0, 0)" }}>
-                <strong>KÍCH THƯỚC</strong>&nbsp;
-              </span>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <span style={{ color: "rgb(0, 0, 0)" }}>
-                Kích thước sản phẩm (mm) LxWxH
-              </span>
-            </td>
-            <td>
-              <span style={{ color: "rgb(0, 0, 0)" }}>397 x 145 x 220</span>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <span style={{ color: "rgb(0, 0, 0)" }}>khối lượng</span>
-            </td>
-            <td>
-              <span style={{ color: "rgb(0, 0, 0)" }}>17.2 kg</span>
-            </td>
-          </tr>
-          <tr>
-            <td colSpan="2">
-              <span style={{ color: "rgb(0, 0, 0)" }}>
-                <strong>MÔI TRƯỜNG</strong>
-              </span>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <span style={{ color: "rgb(0, 0, 0)" }}>Độ ồn</span>
-            </td>
-            <td>
-              <span style={{ color: "rgb(0, 0, 0)" }}>&lt;40dB</span>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <span style={{ color: "rgb(0, 0, 0)" }}>Độ ẩm hoạt động</span>
-            </td>
-            <td>
-              <span style={{ color: "rgb(0, 0, 0)" }}>
-                0% – 90% không ngưng tụ
-              </span>
-            </td>
-          </tr>
-          <tr>
-            <td colSpan="2">
-              <span style={{ color: "rgb(0, 0, 0)" }}>
-                <strong>QUẢN LÝ</strong>
-              </span>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <span style={{ color: "rgb(0, 0, 0)" }}>USB/RS-232</span>
-            </td>
-            <td>
-              <span style={{ color: "rgb(0, 0, 0)" }}>
-                Hỗ trợ Windows 2000/2003/XP/Vista/2008/7,Linux,Unix và MAC
-              </span>
-            </td>
-          </tr>
+          </tr> */}
         </tbody>
       </table>
     </div>

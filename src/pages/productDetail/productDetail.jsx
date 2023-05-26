@@ -6,6 +6,11 @@ import SideBar from "../../components/sidebar/SideBar";
 import InfoProduct from "../../components/InfoProduct/InfoProduct";
 import RelatedProducts from "../../components/RelatedProducts/RelatedProducts";
 import { useParams } from "react-router-dom";
+import ionicons from "../../img/ionicons-v5-e.svg";
+import setting from "../../img/setting.svg";
+import ship from "../../img/ship.svg";
+import baohanh from "../../img/baohanh.svg";
+import sp from "../../img/PRO910WS.jpg";
 
 const ProductDetail = () => {
   // const location = useLocation();
@@ -82,14 +87,13 @@ const ProductDetail = () => {
                                   }}
                                 >
                                   <div className="numbertext">
-                                    {index + 1} / {product.images.length}
-                                    {/* <img src={image} alt="sản phẩm" /> */}
                                     <div
                                       className="product-item-img"
                                       style={{
                                         backgroundImage: `url(${image})`,
                                       }}
                                     ></div>
+                                    {/* {index + 1} / {product.images.length} */}
                                   </div>
                                 </div>
                               ))}
@@ -229,22 +233,22 @@ const ProductDetail = () => {
                             <p className="tit-right-idp">Chính sách bán hàng</p>
 
                             <div className="line-ridp">
-                              <img src="./img/ionicons-v5-e.svg"></img>
+                              <img alt="Bảo hành" src={ionicons}></img>
                               <p>Bảo hành tại nơi sử dụng</p>
                             </div>
 
                             <div className="line-ridp">
-                              <img src="./img/setting.svg"></img>
+                              <img alt="Sửa chữa" src={setting}></img>
                               <p>Sửa chữa chi phí rẻ nhất</p>
                             </div>
 
                             <div className="line-ridp">
-                              <img src="./img/ship.svg"></img>
+                              <img alt="Giao hàng" src={ship}></img>
                               <p>Miễn phí giao hàng</p>
                             </div>
 
                             <div className="line-ridp">
-                              <img src="./img/baohanh.svg"></img>
+                              <img alt="Chính hãng" src={baohanh}></img>
                               <p>Cam kết hàng chính hãng 100%</p>
                             </div>
                           </div>

@@ -16,8 +16,11 @@
 }
 
 .block-slider-prod-top {
+  min-height: 120px;
   display: flex;
-  flex-direction: row-reverse;
-  flex-wrap: nowrap;
-  justify-content: flex-end;
+  overflow-x: auto;
+}
+
+.block-slider-prod-top::-webkit-scrollbar {
+  width: 0;
 }
