@@ -1,5 +1,6 @@
 import React, { useRef} from 'react'
 import './header.css';
+import logo from "../../img/elco.jpg";
 
 const Header = () => {
     const spCnRef = useRef(null);
@@ -148,8 +149,8 @@ const Header = () => {
         <header>
             <div className="header-top">
                 <div className="flex-bw">
-                    <div className=''>
-                        
+                    <div className='logo'>
+                        <img src={logo} alt=''/>
                     </div>
                 </div>
             </div>
