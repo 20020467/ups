@@ -209,18 +209,18 @@ const Header = () => {
                             <li className="hassub-mb">
                                 <p className="phelp">
                                     <a href={value.href}>{value.name}</a>
-                                    <a className="a-icon" href='#a' onClick={() => toggleSubMenu(value.name)}><i class="ri-arrow-down-s-line"></i></a>
+                                    <a className="a-icon"  onClick={() => toggleSubMenu(value.name)}><i class="ri-arrow-down-s-line"></i></a>
                                 </p>
-                                <ul className="sub-menu-mb hide" id={value.name}>
+                                <ul className="sub-menu-mb " id={value.name}>
                                     {value.children.map(val1 => {
                                         if (val1.children.length > 0) 
                                             return (
                                                 <li className="hassub-mb">
                                                     <p class="phelp">
                                                         <a href={val1.href}>{val1.name}</a>
-                                                        <a className="a-icon" href='#a' onClick={() => toggleSubMenu(val1.name)}><i class="ri-arrow-down-s-line"></i></a>
+                                                        <a className="a-icon"  onClick={() => toggleSubMenu(val1.name)}><i class="ri-arrow-down-s-line"></i></a>
                                                     </p>                                 
-                                                    <ul className="sub-menu-mb hide" id={val1.name}>
+                                                    <ul className="sub-menu-mb " id={val1.name}>
                                                         {val1.children.length > 0 && val1.children.map(val2 => (
                                                             <li><a href={val2.href}>{val2.name}</a></li>
                                                         ))}

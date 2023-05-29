@@ -340,6 +340,8 @@
 
         margin: 0;
 
+        display: none;
+
     }
 
     .sub-menu-mb > li{
