@@ -333,15 +333,12 @@
     }
 
     .sub-menu-mb{
-
         padding: 0;
-
         list-style-type: none;
-
         margin: 0;
-
-        display: none;
-
+        transition: max-height 0.2s ease-out;
+        max-height: 0;
+        overflow: hidden;
     }
 
     .sub-menu-mb > li{

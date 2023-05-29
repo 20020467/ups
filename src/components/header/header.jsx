@@ -34,7 +34,13 @@ const Header = () => {
 
     function toggleSubMenu(id) {
         const subMenu = document.getElementById(id);
-        subMenu.style.display = subMenu.style.display === "none" ? "block" : "none";
+        const subMenuP = subMenu.closest(".sub-menu-mb");
+        if (subMenu.style.maxHeight) {
+            subMenu.style.maxHeight = null;
+        } else {
+            subMenu.style.maxHeight = subMenu.scrollHeight + "px";
+            subMenuP.style.maxHeight = subMenuP.scrollHeight+ subMenu.scrollHeight + "px";
+        }
     }
 
     const categories = [{
@@ -203,7 +209,7 @@ const Header = () => {
 				</div>
                 <div ref={mySidenavRef} className="sidenav">
                     <ul className="menu-mobile" id="accordion">
-						<li><a href="">Home</a></li>   
+						<li><a href="/">Home</a></li>   
 						<li><a href="gioi-thieu">Giới thiệu</a></li>
                         {categories.map(value => (
                             <li className="hassub-mb">

@@ -6,36 +6,30 @@ const SideBar = () => {
         const showSubAside = event.target;
         const hasSubAside = showSubAside.closest(".has-sub-aside");
         const ulSubAside = hasSubAside.querySelector(".ul-sub-aside");
-        ulSubAside.style.display = ulSubAside.style.display === "none" ? "block" : "none";
-    };
-      
-    const handleUlSubAsideActive = () => {
-        const activeLi = document.querySelector("ul.ul-sub-aside > li.active");
-        if (activeLi) {
-            const hasSubAside = activeLi.closest(".has-sub-aside");
-            const ulSubAside = hasSubAside.querySelector(".ul-sub-aside");
-            ulSubAside.style.display = ulSubAside.style.display === "none" ? "block" : "none";
+
+        ulSubAside.classList.toggle("active");
+        const listCaseAside = ulSubAside.closest(".list-cate-aside");
+
+        if (ulSubAside.style.maxHeight) {
+            ulSubAside.style.maxHeight = null;
+        } else {
+            ulSubAside.style.maxHeight = ulSubAside.scrollHeight + "px";
+            listCaseAside.style.maxHeight = listCaseAside.scrollHeight+ ulSubAside.scrollHeight + "px";
         }
     };
-
     const handleClickA = (event) => {
         const controlAside = event.target;
         const boxTitAside = controlAside.closest(".box-tit-aside");
-        const listCateAside = document.querySelectorAll(".list-cate-aside");
         const nextElement = boxTitAside.nextElementSibling;
-        if (nextElement.style.display === "none") {
-            listCateAside.forEach((element) => {
-                element.style.display = "none";
-            });
-            nextElement.style.display = "block";
+
+        controlAside.classList.toggle("active");
+
+        if (nextElement.style.maxHeight) {
+            nextElement.style.maxHeight = null;
         } else {
-            nextElement.style.display = "none";
+            nextElement.style.maxHeight = nextElement.scrollHeight + "px";
         }
     };
-
-    useEffect(() => {
-        handleUlSubAsideActive();
-    }, []);
 
     const categories = [{
         _id: "1",
@@ -149,14 +143,14 @@ const SideBar = () => {
                         </div>
                     </div>
                 
-                    <ul className="list-cate-aside hide" id={value.name}>
+                    <ul className="list-cate-aside">
                         {value.children.map(val1 => {
                             if (val1.children.length > 0) 
                                 return (
                                     <li className="has-sub-aside">                                       
                                         <a href={val1.href}><i class="ri-arrow-right-s-fill"></i> {val1.name}</a>
                                         <a className="show-sub-aside" onClick={handleShowSubAsideClick}><i class="ri-arrow-down-s-line"></i></a>                                                                       
-                                        <ul className="ul-sub-aside hide" id={val1.name}>
+                                        <ul className="ul-sub-aside">
                                             {val1.children.map(val2 => (
                                                 <li><i class="ri-arrow-right-s-line"></i> <a href={val2.href}>{val2.name}</a></li>
                                             ))}
