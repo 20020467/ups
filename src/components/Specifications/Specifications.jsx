@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import "../../css/Specifications.css";
+import axios from "axios";
 
-const Specifications = () => {
+const Specifications = ({ productID }) => {
   const [info, setInfo] = useState({
     id: "1",
     productID: "1",
@@ -48,6 +49,22 @@ const Specifications = () => {
     kich_thuoc: "279 x 101 x 142 mm",
     trong_luong: "4.2kg",
   });
+
+  // const [infoProduct, setInfoProduct] = useState();
+
+  // useEffect(() => {
+  //   const getInfoProduct = async () => {
+  //     try {
+  //       const info = await axios.get(
+  //         "http://localhost:8080/api/info/" + productID
+  //       );
+  //       setInfoProduct(info);
+  //     } catch (error) {
+  //       console.log(error);
+  //     }
+  //   };
+  //   getInfoProduct();
+  // }, []);
 
   return (
     <div className="editer">

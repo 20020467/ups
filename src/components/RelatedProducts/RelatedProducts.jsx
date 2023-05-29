@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import "../../css/relatedProducts.css";
 import Product from "../../pages/product/Product.jsx";
 
@@ -116,15 +116,77 @@ const RelatedProducts = ({ productCategory }) => {
       wattage: "10kVA",
       guarantee: 24,
     },
+    {
+      id: 7,
+      price: 7600000,
+      images: [
+        "https://res.cloudinary.com/dx67cp5hj/image/private/s--MPvlQdI1--/v1684596388/ezqvjuhd9ouorf8cyceq.png",
+        "https://res.cloudinary.com/dx67cp5hj/image/private/s--D9mrQM7u--/v1684596394/fb9avoubep3evduoasnm.png",
+        "https://res.cloudinary.com/dx67cp5hj/image/private/s--axjIjyXO--/v1684596400/czz22q2r0afn1gyjyagc.png",
+        "https://res.cloudinary.com/dx67cp5hj/image/private/s--xI3XnEmU--/v1684596403/z5j5ffyuk7sq3qzvwuda.png",
+        "https://res.cloudinary.com/dx67cp5hj/image/private/s--hS-KP_-2--/v1684596407\ndaltv0pq4nqe7pdkk54.png",
+      ],
+      name: "BỘ LƯU ĐIỆN UPS PROLINK PRO910WS 10000VA",
+      theFirm: "Prolink",
+      code: "PRO910WS",
+      origin: "China",
+      status: "Còn hàng",
+      wattage: "10kVA",
+      guarantee: 24,
+    },
   ]);
+
+  const slideRef = useRef();
+  const [width, setWidth] = useState(0);
+  const [start, setStart] = useState(0);
+  const [change, setChange] = useState(9);
+
+  useEffect(() => {
+    if (!slideRef.current) return;
+    const scrollWidth = slideRef.current.scrollWidth;
+    const childrenElementCount = slideRef.current.childElementCount;
+    const width = scrollWidth / childrenElementCount;
+    setWidth(width);
+  }, []);
+
+  //Drag
+
+  const dragStart = (e) => {
+    setStart(e.clientX);
+  };
+
+  const dragOver = (e) => {
+    let touch = e.clientX;
+    setChange(start - touch);
+  };
+  const dragEnd = (e) => {
+    if (change > 0) {
+      slideRef.current.scrollLeft += width + 200;
+    } else {
+      slideRef.current.scrollLeft -= width + 200;
+    }
+  };
 
   return (
     <div className="block-list-prod-best">
       <h3 class="tit-prod-best">Sản phẩm liên quan</h3>
       <div className="block-slider-prod-top">
-        {products?.map((product, index) => {
-          return <Product key={index} product={product} />;
-        })}
+        <div
+          className="slider-prod-top"
+          ref={slideRef}
+          draggable={true}
+          onDragStart={dragStart}
+          onDragOver={dragOver}
+          onDragEnd={dragEnd}
+        >
+          {products?.map((product, index) => {
+            return (
+              <div className="item-product-relate">
+                <Product key={index} product={product} />
+              </div>
+            );
+          })}
+        </div>
       </div>
     </div>
   );

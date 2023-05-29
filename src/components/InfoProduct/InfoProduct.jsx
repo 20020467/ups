@@ -1,12 +1,24 @@
 import React, { useState } from "react";
 import "../../css/infoProduct.css";
 import Specifications from "../Specifications/Specifications";
+import axios from "axios";
+
+// import fileUrl from "../../file/test.pdf";
 
 const InfoProduct = ({ product }) => {
   const [toggleState, setToggleState] = useState(1);
 
   const toggleTab = (index) => {
     setToggleState(index);
+  };
+
+  let fileUrl = "../../file/test.pdf";
+
+  const handleDownload = () => {
+    const link = document.createElement("a");
+    link.href = fileUrl;
+    link.download = fileUrl.substring(fileUrl.lastIndexOf("/") + 1);
+    link.click();
   };
 
   return (
@@ -53,7 +65,7 @@ const InfoProduct = ({ product }) => {
               : "tab-pane fade"
           }
         >
-          <Specifications />
+          <Specifications productID={product.id} />
         </div>
         <div
           id="td3"
@@ -62,7 +74,9 @@ const InfoProduct = ({ product }) => {
               ? "tab-pane fade active-content in"
               : "tab-pane fade"
           }
-        ></div>
+        >
+          {/* <button onClick={handleDownload}>Tải về</button> */}
+        </div>
       </div>
     </div>
   );

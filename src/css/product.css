@@ -121,3 +121,9 @@
   font-family: "Montserrat";
   font-weight: 600;
 }
+
+.price {
+  color: #ed1c24;
+  font-size: 18px;
+  font-family: Arial, Helvetica, sans-serif;
+}

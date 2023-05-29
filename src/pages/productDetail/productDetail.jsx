@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import "../../css/productDetail.css";
 import Header from "../../components/header/header";
 import Footer from "../../components/footer/footer";
@@ -10,12 +10,9 @@ import ionicons from "../../img/ionicons-v5-e.svg";
 import setting from "../../img/setting.svg";
 import ship from "../../img/ship.svg";
 import baohanh from "../../img/baohanh.svg";
-import sp from "../../img/PRO910WS.jpg";
+import axios from "axios";
 
 const ProductDetail = () => {
-  // const location = useLocation();
-  // const product = location.state;
-
   const product = {
     id: 1,
     price: 7600000,
@@ -40,7 +37,23 @@ const ProductDetail = () => {
   };
   const { id } = useParams();
   console.log(id);
+
+  const [productfetch, setProductFetch] = useState();
   const [slideIndex, setSlideIndex] = useState(1);
+
+  //  useEffect(() => {
+  //    const getAllProduct = async () => {
+  //      try {
+  //        const product = await axios.get(
+  //          "http://localhost:8080/api/product/" + id
+  //        );
+  //        setProductFetch(product)
+  //      } catch (error) {
+  //        console.log(error);
+  //      }
+  //    };
+  //    getAllProduct();
+  //  }, []);
 
   const plusSlides = (n) => {
     setSlideIndex((prev) => prev + n);
@@ -157,7 +170,7 @@ const ProductDetail = () => {
                             </p>
                             <p
                               className={
-                                product.status == "Còn hàng"
+                                product.status === "Còn hàng"
                                   ? "status-prod-stocking"
                                   : "status-prod-out"
                               }
