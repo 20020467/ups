@@ -2,6 +2,12 @@
     padding: 15px 0;
     margin-bottom: 5px;
     margin-left: 30px;
+    background: url(../../img/banner.png) center right no-repeat;
+    background-size: contain;
+}
+
+.logo img{
+    width: 80px !important;
 }
 
 .ul-main-menu {
@@ -442,7 +448,7 @@
     }
 
     .logo img{
-        width: 80px;
+        width: 80px !important;
     }
 
     .call-us span{
