@@ -22,10 +22,10 @@ const footer = () => {
                             <p> </p>
                         </div>
                         <div class="social-ft">
-                            <a href="/"><i class="ri-facebook-circle-fill" aria-hidden="true"/></a>
-                            <a href="/"><i class="ri-twitter-fill" aria-hidden="true"/></a>
-                            <a href="/"><i class="ri-instagram-line" aria-hidden="true"/></a>
-                            <a href="/"><i class="ri-pinterest-fill" aria-hidden="true"></i></a>
+                            <a href="/"><i className="ri-facebook-circle-fill" aria-hidden="true"/></a>
+                            <a href="/"><i className="ri-twitter-fill" aria-hidden="true"/></a>
+                            <a href="/"><i className="ri-instagram-line" aria-hidden="true"/></a>
+                            <a href="/"><i className="ri-pinterest-fill" aria-hidden="true"></i></a>
                         </div>
                     </div>
                     

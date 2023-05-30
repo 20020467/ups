@@ -1,19 +1,67 @@
 import NavAdmin from "./NavAdmin";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import Logo from "./Logo";
+import '../../../css/layout.css';
 
 export default function Layout({children}) {
   const [showNav,setShowNav] = useState(false);
-  // const { data: session } = useSession();
-  // if (!session) {
-  //   return (
-  //     <div className="bg-bgGray w-screen h-screen flex items-center">
-  //       <div className="text-center w-full">
-  //         <button onClick={() => signIn('google')} className="bg-white p-2 px-4 rounded-lg">Login with Google</button>
-  //       </div>
-  //     </div>
-  //   );
-  // }
+  const [isAdmin, setIsAdmin] = useState(false);
+  const [username, setUsername] = useState('');
+  const [passWord, setPassWord] = useState('');
+
+  function signIn() {
+    setIsAdmin(true);
+  }
+
+  useEffect(() => {
+    const handleClick = () => {
+      const eye = document.getElementById('eye');
+      eye.classList.toggle('open');
+      const eyeIcon = eye.querySelector('i');
+      eyeIcon.classList.toggle('ri-eye-line');
+      eyeIcon.classList.toggle('ri-eye-close-line');
+      const input = eye.previousElementSibling;
+      if (eye.classList.contains('open')) {
+        input.setAttribute('type', 'text');
+      } else {
+        input.setAttribute('type', 'password');
+      }
+    };
+
+    const init = () => {
+      const eye = document.getElementById('eye');
+      eye.addEventListener('click', handleClick);
+    };
+
+    init();
+
+    return () => {
+      const eye = document.getElementById('eye');
+      eye.removeEventListener('click', handleClick);
+    };
+  }, []);
+
+  if (!isAdmin) {
+    return (
+      <div id="wrapper">
+        <form action="" id="form-login">
+            <h1 className="form-heading">Form đăng nhập</h1>
+            <div className="form-group">
+                <i className="ri-user-line"></i>
+                <input type="text" className="form-input" placeholder="Tên đăng nhập" value={username}  onChange={ev => setUsername(ev.target.value)}/>
+            </div>
+            <div class="form-group">
+                <i className="ri-key-2-line"></i>
+                <input type="password" className="form-input" placeholder="Mật khẩu" value={passWord} onChange={ev => setPassWord(ev.target.value)}/>
+                <div id="eye">
+                    <i className="ri-eye-close-line"></i>
+                </div>
+            </div>
+            <input type="submit" value="Đăng nhập" className="form-submit" onClick={() => signIn()}/>
+        </form>
+    </div>
+    );
+  }
 
 
   return (

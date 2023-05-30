@@ -160,7 +160,7 @@ const Header = () => {
 				<li><a href='/'>Giới thiệu</a></li>
                 {categories.map(value => (
                     <li className="has-sub">
-                        <a href={value.href}>{value.name} <i class="ri-arrow-down-s-line"></i></a>
+                        <a href={value.href}>{value.name} <i className="ri-arrow-down-s-line"></i></a>
                         <ul className="ul-sub-menu">
                             {value.children.map(val1 => {
                                 if (val1.children.length > 0) 
@@ -197,15 +197,15 @@ const Header = () => {
                                     oninput="this.setCustomValidity('')" 
                                     required 
                             />
-							<button type="submit" id="buttonMB"><i class="ri-search-line"></i></button>
+							<button type="submit" id="buttonMB"><i className="ri-search-line"></i></button>
 						</form>
 					</div>
 					
                     <span className="b_span" onClick={handleSpSnClick} ref={spSnRef}>
-                        <i class="ri-menu-line"></i>
+                        <i className="ri-menu-line"></i>
                     </span>
                     <span className="b_span" onClick={handleSpCnClick} ref={spCnRef} style={{ display: 'none' }}>
-                        <i class="ri-close-line"></i>
+                        <i className="ri-close-line"></i>
                     </span>
 				</div>
                 <div ref={mySidenavRef} className="sidenav">
@@ -216,7 +216,7 @@ const Header = () => {
                             <li className="hassub-mb">
                                 <p className="phelp">
                                     <a href={value.href}>{value.name}</a>
-                                    <a className="a-icon"  onClick={() => toggleSubMenu(value.name)}><i class="ri-arrow-down-s-line"></i></a>
+                                    <a className="a-icon"  onClick={() => toggleSubMenu(value.name)}><i className="ri-arrow-down-s-line"></i></a>
                                 </p>
                                 <ul className="sub-menu-mb " id={value.name}>
                                     {value.children.map(val1 => {
@@ -225,7 +225,7 @@ const Header = () => {
                                                 <li className="hassub-mb">
                                                     <p class="phelp">
                                                         <a href={val1.href}>{val1.name}</a>
-                                                        <a className="a-icon"  onClick={() => toggleSubMenu(val1.name)}><i class="ri-arrow-down-s-line"></i></a>
+                                                        <a className="a-icon"  onClick={() => toggleSubMenu(val1.name)}><i className="ri-arrow-down-s-line"></i></a>
                                                     </p>                                 
                                                     <ul className="sub-menu-mb " id={val1.name}>
                                                         {val1.children.length > 0 && val1.children.map(val2 => (
