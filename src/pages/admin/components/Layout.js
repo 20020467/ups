@@ -1,17 +1,12 @@
 import NavAdmin from "./NavAdmin";
-import {useEffect, useState} from "react";
+import {createContext, useEffect, useState} from "react";
 import Logo from "./Logo";
 import '../../../css/layout.css';
 
-export default function Layout({children}) {
-  const [showNav,setShowNav] = useState(false);
-  const [isAdmin, setIsAdmin] = useState(false);
-  const [username, setUsername] = useState('');
-  const [passWord, setPassWord] = useState('');
-
-  function signIn() {
-    setIsAdmin(true);
-  }
+export default function Layout({ isAdmin, signIn, children }) {
+  const [showNav, setShowNav] = useState(false);
+  const [username, setUsername] = useState("");
+  const [passWord, setPassWord] = useState("");
 
   useEffect(() => {
     const handleClick = () => {
@@ -57,7 +52,7 @@ export default function Layout({children}) {
                     <i className="ri-eye-close-line"></i>
                 </div>
             </div>
-            <input type="submit" value="Đăng nhập" className="form-submit" onClick={() => signIn()}/>
+            <input type="submit" value="Đăng nhập" className="form-submit" onClick={signIn}/>
         </form>
     </div>
     );

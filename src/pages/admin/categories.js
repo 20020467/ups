@@ -86,7 +86,7 @@ const Categories = () => {
     }
     
     return (
-        <Layout>
+        <>
             <h1>Danh mục sản phẩm</h1>
             <label>
                 {editedCategory
@@ -147,7 +147,7 @@ const Categories = () => {
                     </tbody>
                 </table>
             )}
-        </Layout>
+        </>
     );
 }
 
