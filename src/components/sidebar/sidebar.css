@@ -48,6 +48,8 @@
     border-top: unset;
     border-bottom: unset;
     overflow: hidden;
+    transition: max-height 0.2s ease-out;
+    max-height: 0;
 }
 
 .list-cate-aside > li > a{
@@ -106,6 +108,12 @@
     font-weight: 600;
     font-size: 15px;
     color: #383434;
+}
+
+.ul-sub-aside {
+    transition: max-height 0.2s ease-out;
+    max-height: 0;
+    overflow: hidden;
 }
 
 .list-cate-aside > li.active > ul:hover{

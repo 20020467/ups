@@ -34,7 +34,14 @@ const Header = () => {
 
   function toggleSubMenu(id) {
     const subMenu = document.getElementById(id);
-    subMenu.style.display = subMenu.style.display === "none" ? "block" : "none";
+    const subMenuP = subMenu.closest(".sub-menu-mb");
+    if (subMenu.style.maxHeight) {
+      subMenu.style.maxHeight = null;
+    } else {
+      subMenu.style.maxHeight = subMenu.scrollHeight + "px";
+      subMenuP.style.maxHeight =
+        subMenuP.scrollHeight + subMenu.scrollHeight + "px";
+    }
   }
 
   const categories = [
@@ -179,21 +186,21 @@ const Header = () => {
           <li>
             <a href="/">Giới thiệu</a>
           </li>
-          {categories.map((value, index) => (
-            <li className="has-sub" key={index}>
+          {categories.map((value) => (
+            <li className="has-sub">
               <a href={value.href}>
                 {value.name} <i class="ri-arrow-down-s-line"></i>
               </a>
               <ul className="ul-sub-menu">
-                {value.children.map((val1, index) => {
+                {value.children.map((val1) => {
                   if (val1.children.length > 0)
                     return (
-                      <li className="has-sub-2" key={index}>
+                      <li className="has-sub-2">
                         <a href={val1.href}>{val1.name}</a>
                         <ul className="ul-sub-menu-2">
                           {val1.children.length > 0 &&
-                            val1.children.map((val2, index) => (
-                              <li key={index}>
+                            val1.children.map((val2) => (
+                              <li>
                                 <a href={val2.href}>{val2.name}</a>
                               </li>
                             ))}
@@ -202,7 +209,7 @@ const Header = () => {
                     );
                   else
                     return (
-                      <li key={index}>
+                      <li>
                         <a href={val1.href}>{val1.name}</a>
                       </li>
                     );
@@ -254,42 +261,40 @@ const Header = () => {
           <div ref={mySidenavRef} className="sidenav">
             <ul className="menu-mobile" id="accordion">
               <li>
-                <a href="">Home</a>
+                <a href="/">Home</a>
               </li>
               <li>
                 <a href="gioi-thieu">Giới thiệu</a>
               </li>
-              {categories.map((value, index) => (
-                <li className="hassub-mb" key={index}>
+              {categories.map((value) => (
+                <li className="hassub-mb">
                   <p className="phelp">
                     <a href={value.href}>{value.name}</a>
                     <a
                       className="a-icon"
-                      href="#a"
                       onClick={() => toggleSubMenu(value.name)}
                     >
                       <i class="ri-arrow-down-s-line"></i>
                     </a>
                   </p>
-                  <ul className="sub-menu-mb hide" id={value.name}>
-                    {value.children.map((val1, index) => {
+                  <ul className="sub-menu-mb " id={value.name}>
+                    {value.children.map((val1) => {
                       if (val1.children.length > 0)
                         return (
-                          <li className="hassub-mb" key={index}>
+                          <li className="hassub-mb">
                             <p class="phelp">
                               <a href={val1.href}>{val1.name}</a>
                               <a
                                 className="a-icon"
-                                href="#a"
                                 onClick={() => toggleSubMenu(val1.name)}
                               >
                                 <i class="ri-arrow-down-s-line"></i>
                               </a>
                             </p>
-                            <ul className="sub-menu-mb hide" id={val1.name}>
+                            <ul className="sub-menu-mb " id={val1.name}>
                               {val1.children.length > 0 &&
-                                val1.children.map((val2, index) => (
-                                  <li key={index}>
+                                val1.children.map((val2) => (
+                                  <li>
                                     <a href={val2.href}>{val2.name}</a>
                                   </li>
                                 ))}
@@ -298,7 +303,7 @@ const Header = () => {
                         );
                       else
                         return (
-                          <li key={index}>
+                          <li>
                             <a href={val1.href}>{val1.name}</a>
                           </li>
                         );

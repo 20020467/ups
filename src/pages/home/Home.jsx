@@ -6,7 +6,19 @@ import Footer from "../../components/footer/footer";
 import "../../css/home.css";
 
 import axios from "axios";
+// import "../../css/grid.css";
+import Slideshow from "../../components/slideshow/slideshow";
+import img1 from "../../img/banner1.png";
+import img2 from "../../img/banner2.png";
+import img3 from "../../img/banner3.png";
+import img4 from "../../img/banner4.png";
 
+const collection = [
+  { src: img1, caption: "Caption one" },
+  { src: img2, caption: "Caption two" },
+  { src: img3, caption: "Caption three" },
+  { src: img4, caption: "Caption four" },
+];
 function Home() {
   const [products, setProducts] = useState([
     {
@@ -122,6 +134,12 @@ function Home() {
   return (
     <div>
       <Header />
+      <Slideshow
+        input={collection}
+        ratio={`3.35:1`}
+        mode={`automatic`}
+        timeout={`6000`}
+      />
       <div className="main-wraper">
         <div className="clear20"></div>
 
