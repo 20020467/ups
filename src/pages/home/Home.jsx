@@ -8,8 +8,8 @@ import "../../css/home.css";
 import Slideshow from "../../components/slideshow/slideshow";
 import img1 from "../../img/banner1.png";
 import img2 from "../../img/banner2.png";
-import img3 from "../../img/banner3.png";
-import img4 from "../../img/banner4.png";
+import img3 from "../../img/banner3.jpg";
+import img4 from "../../img/banner4.jpg";
 
 const collection = [
   { src: img1, caption: "Caption one" },
