@@ -3,10 +3,24 @@ import {createContext, useEffect, useState} from "react";
 import Logo from "./Logo";
 import '../../../css/layout.css';
 
-export default function Layout({ isAdmin, signIn, children }) {
+export default function Layout({children }) {
   const [showNav, setShowNav] = useState(false);
   const [username, setUsername] = useState("");
-  const [passWord, setPassWord] = useState("");
+  const [password, setPassWord] = useState("");
+
+  const [isAdmin, setIsAdmin] = useState(false);
+
+  function signIn() {
+    setIsAdmin(true);
+    localStorage.setItem('isAdmin', true);
+    localStorage.setItem('username', username);
+    localStorage.setItem('password', password);
+  }
+
+  useEffect(()=> {
+    const ft = localStorage.getItem('isAdmin');
+    if (ft !== undefined) setIsAdmin(localStorage.getItem('isAdmin'));
+  },[])
 
   useEffect(() => {
     const handleClick = () => {
@@ -47,7 +61,7 @@ export default function Layout({ isAdmin, signIn, children }) {
             </div>
             <div class="form-group">
                 <i className="ri-key-2-line"></i>
-                <input type="password" className="form-input" placeholder="Mật khẩu" value={passWord} onChange={ev => setPassWord(ev.target.value)}/>
+                <input type="password" className="form-input" placeholder="Mật khẩu" value={password} onChange={ev => setPassWord(ev.target.value)}/>
                 <div id="eye">
                     <i className="ri-eye-close-line"></i>
                 </div>

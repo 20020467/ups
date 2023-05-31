@@ -28,7 +28,7 @@ export default function Products() {
   const navigate = useNavigate();
 
   return (
-    <>
+    <Layout>
       <button className="btn-primary" onClick={() => navigate('/admin/products/new')}>Thêm sản phẩm mới</button>
       <table className="basic mt-2">
         <thead>
@@ -57,6 +57,6 @@ export default function Products() {
           ))}
         </tbody>
       </table>
-    </>
+    </Layout>
   );
 }

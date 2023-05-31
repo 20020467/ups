@@ -7,12 +7,12 @@ const Edit = () => {
     const [productInfo, setProductInfo] = useState(null);
     
     return (
-      <>
+      <Layout>
         <h1>Edit product</h1>
         {productInfo && (
           <ProductForm {...productInfo} />
         )}
-      </>
+      </Layout>
     );
 }
 

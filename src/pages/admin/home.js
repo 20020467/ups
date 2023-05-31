@@ -2,7 +2,7 @@ import Layout from "./components/Layout";
 
 export default function Home() {
   //const {data: session} = useSession();
-  return <>
+  return <Layout>
     <div className="text-blue-900 flex justify-between">
       <h2>Đây là trang admin</h2>
       {/* <h2>
@@ -15,5 +15,5 @@ export default function Home() {
         </span> */}
       </div>
     </div>
-  </>
+  </Layout>
 }
