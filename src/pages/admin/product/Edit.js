@@ -5,15 +5,14 @@ import { useParams } from 'react-router-dom';
 
 const Edit = () => {
     const [productInfo, setProductInfo] = useState(null);
-    const id = useParams();
     
     return (
-      <Layout>
+      <>
         <h1>Edit product</h1>
         {productInfo && (
           <ProductForm {...productInfo} />
         )}
-      </Layout>
+      </>
     );
 }
 

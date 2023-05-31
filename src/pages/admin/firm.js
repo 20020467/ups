@@ -71,7 +71,7 @@ const Firm = () => {
     }
     
     return (
-        <Layout>
+        <>
             <h1>Các hãng sản phẩm</h1>
             <label>
                 {editedFirm
@@ -120,7 +120,7 @@ const Firm = () => {
                     </tbody>
                 </table>
             )}
-        </Layout>
+        </>
     );
 }
 

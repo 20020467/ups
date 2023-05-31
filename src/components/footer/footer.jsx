@@ -34,16 +34,16 @@ const footer = () => {
               </div>
               <div class="social-ft">
                 <a href="/">
-                  <i class="ri-facebook-circle-fill" aria-hidden="true" />
+                  <i className="ri-facebook-circle-fill" aria-hidden="true" />
                 </a>
                 <a href="/">
-                  <i class="ri-twitter-fill" aria-hidden="true" />
+                  <i className="ri-twitter-fill" aria-hidden="true" />
                 </a>
                 <a href="/">
-                  <i class="ri-instagram-line" aria-hidden="true" />
+                  <i className="ri-instagram-line" aria-hidden="true" />
                 </a>
                 <a href="/">
-                  <i class="ri-pinterest-fill" aria-hidden="true"></i>
+                  <i className="ri-pinterest-fill" aria-hidden="true"></i>
                 </a>
               </div>
             </div>
@@ -104,7 +104,7 @@ const footer = () => {
                   <button type="submit">→</button>
                 </form>
               </div>
-              <div className="pay-ft">
+              <div classname="pay-ft">
                 <img src="img/pay.png" alt="" />
               </div>
             </div>

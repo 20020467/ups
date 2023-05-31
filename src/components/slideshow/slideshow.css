@@ -3,7 +3,6 @@
     box-sizing: border-box;
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
-    margin-left: -12.5px;
     margin-top: 5px;
 }
 
@@ -18,7 +17,6 @@
 }
 
 .lp-slideshow > .container > .slide {
-    width: 100%;
     height: 100%;
     position: absolute;
     margin: auto;
@@ -34,9 +32,9 @@
 }
 
 .lp-slideshow > .container > .slide > .image {
-    width: 100%;
     height: 100%;
-    object-fit: cover;
+    /* object-fit: cover; */
+    padding-right: 25px;
 }
 
 .lp-slideshow > .container > .slide > .number-text {

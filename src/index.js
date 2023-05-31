@@ -5,6 +5,7 @@ import reportWebVitals from "./reportWebVitals";
 import { GlobalStyles } from "./components/Styles";
 import { AdminStyles } from "./components/Styles";
 import Admin from "./Admin";
+import Layout from "./pages/admin/components/Layout";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(

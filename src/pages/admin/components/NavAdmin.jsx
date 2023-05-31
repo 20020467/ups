@@ -1,3 +1,4 @@
+import { Navigate, useNavigate } from "react-router-dom";
 import Logo from "./Logo";
 
 export default function NavAdmin({show}) {
@@ -5,7 +6,7 @@ export default function NavAdmin({show}) {
     const activea = inactivea + ' bg-highlight text-black rounded-sm';
     const inactiveIcon = 'w-6 h-6';
     const activeIcon = inactiveIcon + ' text-primary';
-    const {pathname} = '/'
+    const {pathname} = '/';
     return (
         <aside className={(show?'left-0':'-left-full')+" top-0 text-gray-500 p-4 fixed w-full bg-bgGray h-full md:static md:w-auto transition-all"}>
             <div className="mb-4 mr-4">
@@ -40,12 +41,12 @@ export default function NavAdmin({show}) {
                     Các hãng sản xuất
                 </a>
 
-                <button className={inactivea}>
+                <a href={'/'} className={inactivea}>
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
                     <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 9V5.25A2.25 2.25 0 0013.5 3h-6a2.25 2.25 0 00-2.25 2.25v13.5A2.25 2.25 0 007.5 21h6a2.25 2.25 0 002.25-2.25V15M12 9l-3 3m0 0l3 3m-3-3h12.75" />
                     </svg>
-                    Logout
-                </button>
+                    Đăng xuất / Thoát khỏi trang admin
+                </a>
 
             </nav>
         </aside>

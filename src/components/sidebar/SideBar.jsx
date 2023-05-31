@@ -22,7 +22,6 @@ const SideBar = () => {
     const controlAside = event.target;
     const boxTitAside = controlAside.closest(".box-tit-aside");
     const nextElement = boxTitAside.nextElementSibling;
-
     controlAside.classList.toggle("active");
 
     if (nextElement.style.maxHeight) {
@@ -167,11 +166,11 @@ const SideBar = () => {
             <div class="inside-tit-aside">
               <h3 className="tit-aside">
                 <a href={value.href} className="color:#ffff">
-                  <i class="ri-menu-2-line"></i> {value.name}
+                  <i className="ri-menu-2-line"></i> {value.name}
                 </a>
               </h3>
               <span className="control-aside" onClick={handleClickA}>
-                <i class="ri-arrow-down-s-fill"></i>
+                <i className="ri-arrow-down-s-fill"></i>
               </span>
             </div>
           </div>
@@ -182,18 +181,18 @@ const SideBar = () => {
                 return (
                   <li className="has-sub-aside">
                     <a href={val1.href}>
-                      <i class="ri-arrow-right-s-fill"></i> {val1.name}
+                      <i className="ri-arrow-right-s-fill"></i> {val1.name}
                     </a>
                     <a
                       className="show-sub-aside"
                       onClick={handleShowSubAsideClick}
                     >
-                      <i class="ri-arrow-down-s-line"></i>
+                      <i className="ri-arrow-down-s-line"></i>
                     </a>
                     <ul className="ul-sub-aside">
                       {val1.children.map((val2) => (
                         <li>
-                          <i class="ri-arrow-right-s-line"></i>{" "}
+                          <i className="ri-arrow-right-s-line"></i>{" "}
                           <a href={val2.href}>{val2.name}</a>
                         </li>
                       ))}
@@ -204,7 +203,7 @@ const SideBar = () => {
                 return (
                   <li>
                     <a href={val1.href}>
-                      <i class="ri-arrow-right-s-fill"></i> {val1.name}
+                      <i className="ri-arrow-right-s-fill"></i> {val1.name}
                     </a>
                   </li>
                 );
