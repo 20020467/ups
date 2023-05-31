@@ -3,7 +3,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background: #fae4f8;
+    background: rgb(251 250 253 / var(--tw-bg-opacity));
 }
 #form-login{
     max-width: 400px;

@@ -1,4 +1,7 @@
-import AdminStyles from "./admin";
-import GlobalStyles from "./global";
+import "./AdminStyles.scss";
 
-export { AdminStyles, GlobalStyles};
+function AdminStyles({ children }) {
+  return children;
+}
+
+export default AdminStyles;

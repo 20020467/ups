@@ -29,7 +29,7 @@ export default function Products() {
 
   return (
     <Layout>
-      <button className="btn-primary" onClick={() => navigate('/admin/products/new')}>Thêm sản phẩm mới</button>
+      <button className="btn-primary" onClick={() => navigate('/products/new')}>Thêm sản phẩm mới</button>
       <table className="basic mt-2">
         <thead>
           <tr>
@@ -46,9 +46,9 @@ export default function Products() {
               <td>{product.category}</td>
               <td>{product.firm}</td>
               <td>
-                <a className="btn-default" href="">
+                <button className="btn-default" onClick={() => navigate('/products/edit')}>
                   Sửa
-                </a>
+                </button>
                 <a className="btn-red" href="">
                   Xóa
                 </a>

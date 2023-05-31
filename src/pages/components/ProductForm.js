@@ -37,6 +37,7 @@ export default function ProductForm({
     const [wattage, setWattage] = useState(existingWattage || '');
     const [feature, setFeature] = useState(existingFeature || '');
     const navigate = useNavigate();
+    const link_info = "/products/edit-info";
 
     // useEffect(() => {
     //     axios.get('/api/categories').then(result => {
@@ -64,7 +65,7 @@ export default function ProductForm({
     }
 
     if (goToProducts) {
-        navigate('/admin/products')
+        navigate('/products')
     }
 
     async function uploadImages(ev) {
@@ -194,11 +195,16 @@ export default function ProductForm({
             onChange={ev => setGuarantee(ev.target.value)}
         />
 
-        <button
-            type="submit"
-            className="btn-primary">
-            Lưu
-        </button>
+        <div className="info">
+            <button
+                type="submit"
+                className="btn-primary">
+                Lưu
+            </button>
+
+            <button onClick={() => navigate(link_info)} className='btn-primary info'>Sửa thông số kỹ thuật của sản phẩm</button>
+        </div>
+        
       </form>
     );
 }

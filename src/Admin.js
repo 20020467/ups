@@ -1,22 +1,24 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
-import Firm from "./pages/admin/firm";
-import Categories from "./pages/admin/categories";
-import Product from "./pages/admin/products";
-import NewProduct from "./pages/admin/product/new";
-import Home from "./pages/admin/home";
-import Layout from "./pages/admin/components/Layout";
-import { useEffect, useState } from "react";
+import Firm from "./pages/firm";
+import Categories from "./pages/categories";
+import Product from "./pages/products";
+import NewProduct from "./pages/product/new";
+import Home from "./pages/home";
+import Edit_Info from "./pages/product/EditInfo";
+import Edit from "./pages/product/edit";
 
 function Admin() {
   return (
     <Router>
       <Routes>
-        <Route path="/admin" element={<Home/>}/>
-        <Route path="/admin/firm" element={<Firm/>}/>
-        <Route path="/admin/category" element={<Categories/>}/>
-        <Route path="/admin/products" element={<Product/>}/>
-        <Route path="/admin/products/new" element={<NewProduct/>}/>
+        <Route path="/" element={<Home/>}/>
+        <Route path="/firm" element={<Firm/>}/>
+        <Route path="/category" element={<Categories/>}/>
+        <Route path="/products" element={<Product/>}/>
+        <Route path="/products/new" element={<NewProduct/>}/>
+        <Route path="/products/edit" element={<Edit/>}/>
+        <Route path="/products/edit-info" element={<Edit_Info/>}/>
       </Routes>
     </Router>
   );

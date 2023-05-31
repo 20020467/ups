@@ -45,3 +45,13 @@ table.basic a{
     @apply bg-white text-gray-800 px-4 py-1 rounded-sm border border-gray-200 shadow-sm;
 }
 
+.h3-cl {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+.info {
+    justify-content: space-between;
+    display: flex !important;
+}

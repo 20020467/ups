@@ -2,7 +2,6 @@ import Layout from "./components/Layout";
 import {useEffect, useState} from "react";
 import Swal from 'sweetalert2'
 import withReactContent from 'sweetalert2-react-content'
-import '../../css/admin.css'
 
 import React from 'react'
 

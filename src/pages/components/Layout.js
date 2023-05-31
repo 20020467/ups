@@ -1,7 +1,7 @@
 import NavAdmin from "./NavAdmin";
 import {createContext, useEffect, useState} from "react";
 import Logo from "./Logo";
-import '../../../css/layout.css';
+import '../../css/layout.css';
 
 export default function Layout({children }) {
   const [showNav, setShowNav] = useState(false);
