@@ -191,6 +191,10 @@ mySlides numbertext .mySlides {
   border-radius: 50px;
 }
 
+.code-prod .price {
+  font-size: 30px;
+}
+
 .box-pri-prod {
   display: flex;
   flex-wrap: wrap;

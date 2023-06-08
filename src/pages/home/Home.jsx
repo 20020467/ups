@@ -4,7 +4,6 @@ import SideBar from "../../components/sidebar/SideBar";
 import Product from "../product/Product";
 import Footer from "../../components/footer/footer";
 import "../../css/home.css";
-
 import axios from "axios";
 // import "../../css/grid.css";
 import Slideshow from "../../components/slideshow/slideshow";
@@ -130,6 +129,7 @@ function Home() {
   //    };
   //    getAllProduct();
   //  }, []);
+  console.log(process.env.PUBLIC_URL);
 
   return (
     <div>

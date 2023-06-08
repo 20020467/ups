@@ -3,8 +3,7 @@ import "../../css/infoProduct.css";
 import Specifications from "../Specifications/Specifications";
 import axios from "axios";
 
-// import fileUrl from "../../file/test.pdf";
-
+// Mô tả sp, Thông số kỹ thuật, tài liệu
 const InfoProduct = ({ product }) => {
   const [toggleState, setToggleState] = useState(1);
 

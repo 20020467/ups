@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "../../css/Specifications.css";
 import axios from "axios";
 
+// Thông số ký thuật chi tiết
 const Specifications = ({ productID }) => {
   const [info, setInfo] = useState({
     id: "1",

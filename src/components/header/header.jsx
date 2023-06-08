@@ -189,21 +189,21 @@ const Header = () => {
           <li>
             <a href="/">Giới thiệu</a>
           </li>
-          {categories.map((value) => (
-            <li className="has-sub">
+          {categories.map((value, index) => (
+            <li className="has-sub" key={index}>
               <a href={value.href}>
                 {value.name} <i className="ri-arrow-down-s-line"></i>
               </a>
               <ul className="ul-sub-menu">
-                {value.children.map((val1) => {
+                {value.children.map((val1, index) => {
                   if (val1.children.length > 0)
                     return (
-                      <li className="has-sub-2">
+                      <li className="has-sub-2" key={index}>
                         <a href={val1.href}>{val1.name}</a>
                         <ul className="ul-sub-menu-2">
                           {val1.children.length > 0 &&
-                            val1.children.map((val2) => (
-                              <li>
+                            val1.children.map((val2, index) => (
+                              <li key={index}>
                                 <a href={val2.href}>{val2.name}</a>
                               </li>
                             ))}
@@ -212,7 +212,7 @@ const Header = () => {
                     );
                   else
                     return (
-                      <li>
+                      <li key={index}>
                         <a href={val1.href}>{val1.name}</a>
                       </li>
                     );
@@ -269,8 +269,8 @@ const Header = () => {
               <li>
                 <a href="gioi-thieu">Giới thiệu</a>
               </li>
-              {categories.map((value) => (
-                <li className="hassub-mb">
+              {categories.map((value, index) => (
+                <li className="hassub-mb" key={index}>
                   <p className="phelp">
                     <a href={value.href}>{value.name}</a>
                     <a
@@ -281,11 +281,11 @@ const Header = () => {
                     </a>
                   </p>
                   <ul className="sub-menu-mb " id={value.name}>
-                    {value.children.map((val1) => {
+                    {value.children.map((val1, index) => {
                       if (val1.children.length > 0)
                         return (
-                          <li className="hassub-mb">
-                            <p class="phelp">
+                          <li className="hassub-mb" key={index}>
+                            <p className="phelp">
                               <a href={val1.href}>{val1.name}</a>
                               <a
                                 className="a-icon"
@@ -296,8 +296,8 @@ const Header = () => {
                             </p>
                             <ul className="sub-menu-mb " id={val1.name}>
                               {val1.children.length > 0 &&
-                                val1.children.map((val2) => (
-                                  <li>
+                                val1.children.map((val2, index) => (
+                                  <li key={index}>
                                     <a href={val2.href}>{val2.name}</a>
                                   </li>
                                 ))}
@@ -306,7 +306,7 @@ const Header = () => {
                         );
                       else
                         return (
-                          <li>
+                          <li key={index}>
                             <a href={val1.href}>{val1.name}</a>
                           </li>
                         );

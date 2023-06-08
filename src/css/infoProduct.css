@@ -6,6 +6,7 @@
 
 .block-tab-description-prod .nav-tabs {
   border: none;
+  margin-bottom: 0;
 }
 
 .nav-tabs > li {

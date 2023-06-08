@@ -2,6 +2,7 @@ import React, { useState, useRef, useEffect } from "react";
 import "../../css/relatedProducts.css";
 import Product from "../../pages/product/Product.jsx";
 
+// Gợi ý sản phẩm liên quan
 const RelatedProducts = ({ productCategory }) => {
   const [products, setProducts] = useState([
     {

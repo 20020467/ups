@@ -10,29 +10,29 @@ const footer = () => {
           <div className="row flex-wrap">
             <div className="col-md-3 col-sm-12">
               <p className="tit-ft">Thông tin công ty</p>
-              <p className="name-com-ft">CÔNG TY CP CÔNG NGHỆ ELCO VIỆT NAM</p>
+              <p className="name-com-ft">
+                CÔNG TY TNHH THƯƠNG MẠI DỊCH VỤ MIỀN CÔNG NGHỆ
+              </p>
               <div className="editer">
                 <p>
-                  <span class="bold">Địa chỉ:</span> Số 68 Phố Trạm, Phường Long
-                  Biên, Quận Long Biên, TP Hà Nội
+                  <span className="bold">Địa chỉ:</span> Tầng 3, Số 5 đường
+                  3.6/2, KĐT Gamuda Gardens, Phường Trần Phú, Quận Hoàng Mai,
+                  Thành phố Hà Nội, Việt Nam.
                 </p>
-                <p>
-                  VP Hà Nội: Số 202/16/59 Đường Cổ Linh - Phường Long Biên -
-                  Quận Long Biên - TP Hà Nội
-                </p>
-                <p>
-                  VP HCM: Số 13 Nguyễn Trọng Quyền, Phường Tân Thới Hòa - Quận
-                  Tân Phú - TP HCM
-                </p>
-                <p>
-                  <span class="bold">Điện thoại: </span>0978470323
-                </p>
-                <p>Email: Info@elco.com.vn</p>
-                <p> </p>
 
-                <p> </p>
+                <p>
+                  <span className="bold">Điện thoại: </span>0878856493
+                </p>
+                <p>
+                  <span className="bold">Email: </span>
+                  hotline@miencongnghe.vn
+                </p>
+                <p>
+                  <span className="bold">Mã số thuế: </span>
+                  0110361961
+                </p>
               </div>
-              <div class="social-ft">
+              <div className="social-ft">
                 <a href="/">
                   <i className="ri-facebook-circle-fill" aria-hidden="true" />
                 </a>
@@ -104,7 +104,7 @@ const footer = () => {
                   <button type="submit">→</button>
                 </form>
               </div>
-              <div classname="pay-ft">
+              <div className="pay-ft">
                 <img src="img/pay.png" alt="" />
               </div>
             </div>

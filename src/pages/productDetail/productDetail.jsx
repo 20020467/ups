@@ -27,7 +27,7 @@ const ProductDetail = () => {
     theFirm: "Prolink",
     code: "PRO910WS",
     origin: "China",
-    status: "Còn hàng",
+    status: true,
     wattage: "10kVA",
     guarantee: 24,
     description:
@@ -170,33 +170,45 @@ const ProductDetail = () => {
                             </p>
                             <p
                               className={
-                                product.status === "Còn hàng"
+                                product.status == true
                                   ? "status-prod-stocking"
                                   : "status-prod-out"
                               }
                             >
                               Tình trạng:{" "}
                               <b>
-                                <span>{product.status}</span>
+                                {product.status == true ? (
+                                  <span>Còn hàng</span>
+                                ) : (
+                                  <span>Hết hàng</span>
+                                )}
                               </b>
                             </p>
                           </div>
 
                           {/* Liên hệ */}
                           <div className="box-pri-prod">
-                            <p className="code-prod">
-                              <span className="bold">Liên hệ:</span>
-                              <span
-                                style={{
-                                  color: "#a40606",
-                                  fontWeight: "700",
-                                  marginLeft: 15,
-                                }}
-                              >
-                                {"  "}
-                                0358179025
-                              </span>
-                            </p>
+                            {product.price === null ? (
+                              <p className="code-prod">
+                                <span className="bold">Liên hệ:</span>
+                                <span
+                                  style={{
+                                    color: "#a40606",
+                                    fontWeight: "700",
+                                    marginLeft: 15,
+                                  }}
+                                >
+                                  {"  "}
+                                  0358179025
+                                </span>
+                              </p>
+                            ) : (
+                              <p className="code-prod">
+                                <span className="bold price">
+                                  {product.price + "₫"}
+                                </span>
+                              </p>
+                            )}
                           </div>
 
                           {/* des prod */}
