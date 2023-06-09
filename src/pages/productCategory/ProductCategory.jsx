@@ -5,7 +5,6 @@ import Product from "../product/Product";
 import Footer from "../../components/footer/footer";
 import "../../css/home.css";
 import { useParams } from "react-router-dom";
-
 import axios from "axios";
 
 function ProductCategory() {
@@ -18,7 +17,7 @@ function ProductCategory() {
     const getAllProduct = async () => {
       try {
         const product = await axios.get(
-          "https://miencongnghe.vn/api/category/" + id
+          `${process.env.REACT_APP_HOST}/api/category/` + id
         );
         console.log(product.data);
         setProducts(product.data.data);
@@ -43,7 +42,7 @@ function ProductCategory() {
                 <div className="content">
                   <div className="row">
                     {products.length > 0 ? (
-                      <div>
+                      <>
                         {products.map((item, index) => {
                           return (
                             <div className="col l-3 m-6 c-6" key={index}>
@@ -51,7 +50,7 @@ function ProductCategory() {
                             </div>
                           );
                         })}
-                      </div>
+                      </>
                     ) : (
                       <div className="col l-3 m-6 c-6">
                         <p>Sản phẩm sắp ra mắt!</p>

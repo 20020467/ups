@@ -137,6 +137,7 @@ const RelatedProducts = ({ productCategory }) => {
     },
   ]);
 
+  // sp theo hãng
   const slideRef = useRef();
   const [width, setWidth] = useState(0);
   const [start, setStart] = useState(0);

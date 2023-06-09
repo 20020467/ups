@@ -129,7 +129,6 @@ function Home() {
   //    };
   //    getAllProduct();
   //  }, []);
-  console.log(process.env.PUBLIC_URL);
 
   return (
     <div>

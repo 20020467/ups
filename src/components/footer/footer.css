@@ -42,6 +42,10 @@
   margin: 0;
 }
 
+.ul-ft > li > a {
+  color: black;
+}
+
 .name-com-ft {
   font-size: 18px;
   margin-bottom: 20px;

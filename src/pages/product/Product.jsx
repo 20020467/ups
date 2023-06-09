@@ -1,5 +1,6 @@
 import React from "react";
 import "../../css/product.css";
+import sp from "../../../src/img/PRO910WS.jpg";
 
 const Product = ({ product }) => {
   return (
@@ -12,9 +13,14 @@ const Product = ({ product }) => {
         >
           <div
             className="product-item-img"
-            style={{
-              backgroundImage: `url(${product.images[0]})`,
-            }}
+            style={
+              // product.image[0]
+              //   ? {
+              //       backgroundImage: `url(${product.images[0]})`,
+              //     }
+              //   : { backgroundImage: URL(sp) }
+              { backgroundImage: `url(${sp})` }
+            }
           ></div>
         </a>
 
@@ -48,7 +54,7 @@ const Product = ({ product }) => {
             <i />{" "}
           </a>
           <span className="bold">Hãng: </span>
-          <a href={"/productDetail/" + product.id}>{product.theFirm}</a>
+          <a href={"/productDetail/" + product.id}>{product.firm}</a>
         </p>
         <a
           style={{ textDecoration: "none", color: "#000" }}
@@ -63,7 +69,7 @@ const Product = ({ product }) => {
           style={{ textDecoration: "none", color: "#000" }}
           href={"/productDetail/" + product.id}
         >
-          {product.price === null ? (
+          {product.price === null || product.price === undefined ? (
             <p className="code-prod">
               <span className="bold">Liên hệ </span>
             </p>

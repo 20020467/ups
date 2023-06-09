@@ -33,134 +33,6 @@ const SideBar = () => {
     }
   };
 
-  // const categories = [
-  //   {
-  //     _id: "1",
-  //     href: "/",
-  //     name: "Bộ Lưu Điện UPS",
-  //     children: [
-  //       {
-  //         _id: "1",
-  //         href: "/",
-  //         name: "Bộ Lưu Điện UPS CYBER",
-  //         children: [
-  //           {
-  //             _id: "1",
-  //             href: "/",
-  //             name: "UPS Cyber Online",
-  //             children: [],
-  //           },
-  //           {
-  //             _id: "1",
-  //             href: "/",
-  //             name: "UPS Offline Cho Máy Tính - SERVER",
-  //             children: [],
-  //           },
-  //         ],
-  //       },
-  //       {
-  //         _id: "1",
-  //         href: "/Danh mục/" + 1,
-  //         name: "Bộ Lưu Điện UPS DELTA – TURKEY",
-  //         children: [],
-  //       },
-  //       {
-  //         _id: "1",
-  //         href: "/",
-  //         name: "Bộ Lưu Điện UPS SANTAK",
-  //         children: [],
-  //       },
-  //       {
-  //         _id: "1",
-  //         href: "/",
-  //         name: "Bộ Lưu Điện UPS APC",
-  //         children: [],
-  //       },
-  //     ],
-  //   },
-  //   {
-  //     _id: "1",
-  //     href: "/",
-  //     name: "Giải pháp Data Center",
-  //     children: [
-  //       {
-  //         _id: "1",
-  //         href: "/",
-  //         name: "BKVM Switch",
-  //         children: [
-  //           {
-  //             _id: "1",
-  //             href: "/",
-  //             name: "ANGUS",
-  //             children: [],
-  //           },
-  //           {
-  //             _id: "1",
-  //             href: "/",
-  //             name: "KINAN",
-  //             children: [],
-  //           },
-  //           {
-  //             _id: "1",
-  //             href: "/",
-  //             name: "LANBE",
-  //             children: [],
-  //           },
-  //           {
-  //             _id: "1",
-  //             href: "/",
-  //             name: "ATEN",
-  //             children: [],
-  //           },
-  //         ],
-  //       },
-  //       {
-  //         _id: "1",
-  //         href: "/",
-  //         name: "Tủ Rack",
-  //         children: [],
-  //       },
-  //       {
-  //         _id: "1",
-  //         href: "/",
-  //         name: "PDU",
-  //         children: [],
-  //       },
-  //       {
-  //         _id: "1",
-  //         href: "/",
-  //         name: "Network Switch",
-  //         children: [],
-  //       },
-  //     ],
-  //   },
-  //   {
-  //     _id: "1",
-  //     href: "/",
-  //     name: "Ắc quy",
-  //     children: [
-  //       {
-  //         _id: "1",
-  //         href: "/",
-  //         name: "Ắc quy Globe",
-  //         children: [],
-  //       },
-  //       {
-  //         _id: "1",
-  //         href: "/",
-  //         name: "Ắc quy Vision",
-  //         children: [],
-  //       },
-  //       {
-  //         _id: "1",
-  //         href: "/",
-  //         name: "Ắc quy Long",
-  //         children: [],
-  //       },
-  //     ],
-  //   },
-  // ];
-
   const [categories, setCategories] = useState([]);
 
   useEffect(() => {
@@ -168,8 +40,8 @@ const SideBar = () => {
   }, []);
 
   async function fetchCategories() {
-    axios
-      .get("https://miencongnghe.vn/api/category/getAllCategory")
+    await axios
+      .get(`${process.env.REACT_APP_HOST}/api/category/getAllCategory`)
       .then((result) => {
         console.log("data");
         console.log(result.data);
@@ -184,7 +56,7 @@ const SideBar = () => {
           <div className="box-tit-aside">
             <div className="inside-tit-aside">
               <h3 className="tit-aside">
-                <a href={"#"} className="color:#ffff">
+                <a href={"#"}>
                   <i className="ri-menu-2-line"></i> {value.name}
                 </a>
               </h3>
