@@ -1,35 +1,57 @@
+import { useEffect, useState } from "react";
 import Layout from "./components/Layout";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 export default function Products() {
-  // const [products,setProducts] = useState([]);
+  const [products,setProducts] = useState([]);
+  const [file, setFile] = useState();
+  var bodyFormData = new FormData();
 
-  // useEffect(() => {
-  //   axios.get('/api/products').then(response => {
-  //     setProducts(response.data);
-  //   });
-  // }, []);
+  useEffect(() => {
+    axios.get('https://miencongnghe.vn/api/product/getAllProduct').then(response => {
+      setProducts(response.data);
+    });
+  }, []);
 
-  const products = [{
-    _id: "1",
-    title: "Bộ Lưu Điện UPS Cyber Offline 600VA SES600",
-    category: "Bộ Lưu Điện UPS",
-    firm: "Prolink",
-  },{
-    _id: "2",
-    title: "Bộ Lưu Điện UPS Cyber Offline 600VA SES600",
-    category: "Bộ Lưu Điện UPS",
-    firm: "Prolink",
-  },{
-    _id: "3",
-    title: "Bộ Lưu Điện UPS Cyber Offline 600VA SES600",
-    category: "Bộ Lưu Điện UPS",
-    firm: "Prolink",
-  }]
   const navigate = useNavigate();
+
+  async function importDataByExcel() {
+    //await axios.post('https://miencongnghe.vn/api/product/uploadfile', file);
+    if (!file) {
+      alert('Vui lòng chọn tệp excel');
+      return;
+    }
+    bodyFormData.append('file', file)
+    await axios({
+      method: "post",
+      url: "https://miencongnghe.vn/api/product/uploadfile",
+      data: bodyFormData,
+      headers: { "Content-Type": "multipart/form-data" },
+    }).then(() => {
+      alert('Thêm sản phẩm mới thành công');
+      axios.get('https://miencongnghe.vn/api/product/getAllProduct').then(response => {
+        setProducts(response.data);
+      });
+    })
+  }
 
   return (
     <Layout>
-      <button className="btn-primary" onClick={() => navigate('/products/new')}>Thêm sản phẩm mới</button>
+      <div className="info">
+        <button className="btn-primary" onClick={() => navigate('/products/new')}>Thêm sản phẩm mới</button>
+        <div className="">
+          <input
+            type="file"
+            name="myImage"
+            onChange={(e) => {
+              setFile(e.target.files[0]);
+            }}
+          />
+          <button className="btn-primary" onClick={() => importDataByExcel()}>Thêm bằng excel</button>
+        </div>
+        
+      </div>
+      
       <table className="basic mt-2">
         <thead>
           <tr>
@@ -41,14 +63,14 @@ export default function Products() {
         </thead>
         <tbody>
           {products.map(product => (
-            <tr key={product._id}>
-              <td>{product.title}</td>
+            <tr key={product.id}>
+              <td>{product.name}</td>
               <td>{product.category}</td>
               <td>{product.firm}</td>
               <td>
-                <button className="btn-default" onClick={() => navigate('/products/edit')}>
+                <a className="btn-default" href={'/products/edit/'+ product.id}>
                   Sửa
-                </button>
+                </a>
                 <a className="btn-red" href="">
                   Xóa
                 </a>

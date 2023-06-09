@@ -2,53 +2,41 @@ import NavAdmin from "./NavAdmin";
 import {createContext, useEffect, useState} from "react";
 import Logo from "./Logo";
 import '../../css/layout.css';
+import axios from "axios";
 
 export default function Layout({children }) {
   const [showNav, setShowNav] = useState(false);
   const [username, setUsername] = useState("");
   const [password, setPassWord] = useState("");
 
-  const [isAdmin, setIsAdmin] = useState(false);
+  const [isAdmin, setIsAdmin] = useState(true);
 
-  function signIn() {
-    setIsAdmin(true);
-    localStorage.setItem('isAdmin', true);
-    localStorage.setItem('username', username);
-    localStorage.setItem('password', password);
+  async function signIn() {
+    const data = {
+      username, password
+    }
+    await axios.post('https://miencongnghe.vn/api/auth/login', data).then(
+      () => {
+        setIsAdmin(true);
+        alert('Đăng nhập thành công');
+        window.localStorage.setItem('isAdmin', 'true');
+        return;
+      }
+    );
+    
+    // if (res.data.success === true) {
+    //   setIsAdmin(true);
+    //   alert('Đăng nhập thành công');
+    // }
+    // //setIsAdmin(true);
+    // window.localStorage.setItem('isAdmin', 'true');
   }
 
   useEffect(()=> {
-    const ft = localStorage.getItem('isAdmin');
-    if (ft !== undefined) setIsAdmin(localStorage.getItem('isAdmin'));
+    console.log("abc")
+    const ft = window.localStorage.getItem('isAdmin');
+    if (ft) setIsAdmin(true);
   },[])
-
-  useEffect(() => {
-    const handleClick = () => {
-      const eye = document.getElementById('eye');
-      eye.classList.toggle('open');
-      const eyeIcon = eye.querySelector('i');
-      eyeIcon.classList.toggle('ri-eye-line');
-      eyeIcon.classList.toggle('ri-eye-close-line');
-      const input = eye.previousElementSibling;
-      if (eye.classList.contains('open')) {
-        input.setAttribute('type', 'text');
-      } else {
-        input.setAttribute('type', 'password');
-      }
-    };
-
-    const init = () => {
-      const eye = document.getElementById('eye');
-      eye.addEventListener('click', handleClick);
-    };
-
-    init();
-
-    return () => {
-      const eye = document.getElementById('eye');
-      eye.removeEventListener('click', handleClick);
-    };
-  }, []);
 
   if (!isAdmin) {
     return (
@@ -59,7 +47,7 @@ export default function Layout({children }) {
                 <i className="ri-user-line"></i>
                 <input type="text" className="form-input" placeholder="Tên đăng nhập" value={username}  onChange={ev => setUsername(ev.target.value)}/>
             </div>
-            <div class="form-group">
+            <div className="form-group">
                 <i className="ri-key-2-line"></i>
                 <input type="password" className="form-input" placeholder="Mật khẩu" value={password} onChange={ev => setPassWord(ev.target.value)}/>
                 <div id="eye">

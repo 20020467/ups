@@ -1,8 +1,9 @@
+import axios from "axios";
 import {useEffect, useState} from "react";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams, useRoutes } from 'react-router-dom';
 
 export default function Info({
-    _id,
+    productID,
     cong_suat : ex_cong_suat,
     dai_dien_ap: ex_dai_dien_ap,
     tan_so_vao: ex_tan_so_vao,
@@ -52,16 +53,7 @@ export default function Info({
     const [trong_luong, setTrongLuong] = useState(ex_trong_luong || '');
     const [goToProducts, setGoToProducts] = useState(false);
     const navigate = useNavigate();
-    const link_info = "/products/edit";
-
-    // useEffect(() => {
-    //     axios.get('/api/categories').then(result => {
-    //         setCategories(result.data);
-    //     })
-    //     axios.get('/api/firm').then(result => {
-    //         setFirms(result.data);
-    //     });
-    // }, []);
+    const {id} = useParams();
 
     async function saveProduct(ev) {
         ev.preventDefault();
@@ -70,18 +62,22 @@ export default function Info({
             thoi_gian_chuyen_mach, loai_ac_quy, thoi_gian_sac, bv_ngan_mach, bv_xung, canh_bao, bv_qua_tai,
             quan_ly_ac_quy, cong_USB, do_on_hd, nhiet_do_hd, do_am_hd, he_so_cong_suat, kich_thuoc, trong_luong
         };
-        if (_id) {
+        if (productID) {
             //update
-            //await axios.put('/api/products', {...data,_id});
+            await axios.put('https://miencongnghe.vn/api/info/'+id, data).then(() => {
+                alert('Lưu thông số kỹ thuật của sản phẩm thành công')
+            });
         } else {
             //create
-            //await axios.post('/api/products', data);
+            await axios.post('https://miencongnghe.vn/api/info/'+id, data).then(() => {
+                alert('Tạo thông số kỹ thuật cho sản phẩm thành công')
+            });
         }
         setGoToProducts(true);
     }
 
     if (goToProducts) {
-        navigate('/products')
+        navigate('/products/edit/'+id)
     }
     
     return (
@@ -269,7 +265,7 @@ export default function Info({
                 Lưu
             </button>
 
-            <button onClick={() => navigate(link_info)} className='btn-primary info'>Quay lại sửa sản phẩm</button>
+            <a href={'/products/edit/'+ id} className='btn-primary info'>Quay lại sửa sản phẩm</a>
         </div>
       </form>
     );

@@ -17,8 +17,8 @@ function Admin() {
         <Route path="/category" element={<Categories/>}/>
         <Route path="/products" element={<Product/>}/>
         <Route path="/products/new" element={<NewProduct/>}/>
-        <Route path="/products/edit" element={<Edit/>}/>
-        <Route path="/products/edit-info" element={<Edit_Info/>}/>
+        <Route path="/products/edit/:id" element={<Edit/>}/>
+        <Route path="/products/edit-info/:id" element={<Edit_Info/>}/>
       </Routes>
     </Router>
   );

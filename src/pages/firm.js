@@ -4,52 +4,54 @@ import Swal from 'sweetalert2'
 import withReactContent from 'sweetalert2-react-content'
 
 import React from 'react'
+import axios from "axios";
+import { ReactSortable } from "react-sortablejs";
+import Spinner from "./components/Spinner";
 
 const Firm = () => {
     const [editedFirm, setEditedFirm] = useState(null);
     const [name,setName] = useState('');
-    //const [firms,setFirms] = useState([]);
+    const [firms,setFirms] = useState([]);
+    const [description, setDescription] = useState('');
+    const [img, setImages] = useState([]);
+    const [isUploading, setIsUploading] = useState(false);
     const MySwal = withReactContent(Swal);
 
-    // useEffect(() => {
-    //     fetchFirms();
-    // }, [])
+    useEffect(() => {
+        fetchFirms();
+    }, [])
 
-    // function fetchFirms() {
-    //     axios.get('/api/firm').then(result => {
-    //         setFirms(result.data);
-    //     });
-    // }
-
-    const firms = [{
-        _id: "1",
-        name: "Ô Long"
-    },{
-        _id: "2",
-        name: "Nutifrust"
-    },{
-        _id: "3",
-        name: "VinaMilk"
-    }]
+    function fetchFirms() {
+        axios.get('https://miencongnghe.vn/api/firm/getAllFirm').then(result => {
+            setFirms(result.data.data);
+        });
+    }
 
     async function saveFirm(ev){
         ev.preventDefault();
-            const data = {
+        const data = {
             name,
+            description,
+            img
         };
         if (editedFirm) {
-            data._id = editedFirm._id;
-            //await axios.put('/api/firm', data);
+            data.id = editedFirm.id;
+            await axios.put('https://miencongnghe.vn/api/firm/'+ data.id, data);
             setEditedFirm(null);
         } else {
-            //await axios.post('/api/firm', data);
+            await axios.post('https://miencongnghe.vn/api/firm/create' , data);
         }
         setName('');
+        setDescription('');
+        setImages([]);
+        fetchFirms();
     }
 
     function editFirm(firm){
         setEditedFirm(firm);
         setName(firm.name);
+        setDescription(firm.description);
+        if (firm.img) setImages(firm.img);
     }
 
     function deleteFirm(firm){
@@ -63,9 +65,56 @@ const Firm = () => {
         reverseButtons: true,
         }).then(async result => {
         if (result.isConfirmed) {
-            // const {_id} = firm;
-            // await axios.delete('/api/firm?_id='+_id);
-            // fetchFirms();
+            const {id} = firm;
+            await axios.delete('https://miencongnghe.vn/api/firm/'+id);
+            fetchFirms();
+        }
+        });
+    }
+
+    async function uploadImages(ev) {
+        if (ev.target.files[0]) {
+            setIsUploading(true);
+            const data = new FormData();
+            data.append('data', ev.target.files[0]);
+            const res = await axios.post('https://miencongnghe.vn/uploadImg', data);
+            setImages(oldImages => {
+                return [...oldImages, res.data.links];
+            });
+            console.log(img);
+            setIsUploading(false);
+        }
+    }
+
+    function updateImagesOrder(img) {
+        setImages(img);
+    }
+
+    function deleteImg(link){
+        MySwal.fire({
+        title: 'Bạn có chắc không?',
+        text: `Bạn có muốn xóa ảnh này không?`,
+        showCancelButton: true,
+        cancelButtonText: 'Hủy',
+        confirmButtonText: 'Có',
+        confirmButtonColor: '#d55',
+        reverseButtons: true,
+        }).then(async result => {
+        if (result.isConfirmed) {
+            const updatedLinks = img.filter(link_ => link_ !== link);
+            const data = {link: link};
+            console.log(data);
+            const res = await axios.post('https://miencongnghe.vn/deleteImg', data);
+            if (!res.data.success) alert('Xóa ảnh không thành công')
+            setImages(updatedLinks);
+            const data2 = {
+                img: updatedLinks
+            };
+            if (editedFirm) {
+                data2.id = editedFirm.id;
+                await axios.put('https://miencongnghe.vn/api/firm/'+ data2.id, data2);
+                setEditedFirm(null);
+            }
         }
         });
     }
@@ -86,6 +135,43 @@ const Firm = () => {
                         onChange={ev => setName(ev.target.value)}
                         value={name}/>
                 </div>
+
+                <label>Mô tả hãng sản phẩm</label>
+                <textarea
+                    placeholder="Mô tả"
+                    value={description}
+                    onChange={ev => setDescription(ev.target.value)}
+                />
+
+                <label>Hình ảnh</label>
+                <div className="mb-2 flex flex-wrap gap-1">
+                    <ReactSortable
+                        list={img}
+                        className="flex flex-wrap gap-1"
+                        setList={updateImagesOrder}>
+                        {img?.length > 0 && img.map(link => (
+                            <div key={link} className="img">
+                                <button type="button" onClick={() => deleteImg(link)} className="btn-del">
+                                    Xóa ảnh
+                                </button> 
+                                <a href={link} className="btn-del">Xem ảnh</a>
+                                <img src={link} alt="" className="rounded-lg"/>
+                            </div>
+                        ))}
+                    </ReactSortable>
+                    {isUploading && (
+                        <div className="h-24 w-24 flex items-center">
+                            <Spinner />
+                        </div>
+                    )}
+                    <label className="w-24 h-24 cursor-pointer text-center flex flex-col items-center justify-center text-sm gap-1 text-primary rounded-sm bg-white shadow-sm border border-primary">
+                        <div>
+                            Thêm ảnh
+                        </div>
+                        <input type="file" onChange={uploadImages} className="hidden"/>
+                    </label>
+                </div>
+
                 <div className="flex gap-1">
                     {editedFirm && (
                         <button
@@ -93,6 +179,8 @@ const Firm = () => {
                         onClick={() => {
                             setEditedFirm(null);
                             setName('');
+                            setDescription('');
+                            setImages([]);
                         }}
                         className="btn-default">Hủy</button>
                     )}
@@ -109,7 +197,7 @@ const Firm = () => {
                     </thead>
                     <tbody>
                         {firms.length > 0 && firms.map(firm => (
-                            <tr key={firm._id}>
+                            <tr key={firm.id}>
                                 <td>{firm.name}</td>
                                 <td>
                                     <button onClick={() => editFirm(firm)}  className="btn-default mr-1">Sửa</button>

@@ -2,15 +2,17 @@ import {useEffect, useState} from "react";
 import Spinner from "./Spinner";
 import {ReactSortable} from "react-sortablejs";
 import { useNavigate } from 'react-router-dom';
+import axios from "axios";
+import withReactContent from "sweetalert2-react-content";
+import Swal from 'sweetalert2'
 
 export default function ProductForm({
-    _id,
-    title:existingTitle,
+    id,
+    name:existingName,
     description:existingDescription,
     price:existingPrice,
-    images:existingImages,
+    img:existingImages,
     category:assignedCategory,
-    properties:assignedProperties,
     code: existingCode,
     firm: assignedFirm,
     status: assignedStatus,
@@ -19,12 +21,11 @@ export default function ProductForm({
     wattage: existingWattage,
     feature: existingFeature
 }) {
-    const [title, setTitle] = useState(existingTitle || '');
+    const [name, setName] = useState(existingName || '');
     const [description, setDescription] = useState(existingDescription || '');
     const [category, setCategory] = useState(assignedCategory || '');
-    const [productProperties, setProductProperties] = useState(assignedProperties || {});
     const [price, setPrice] = useState(existingPrice || '');
-    const [images, setImages] = useState(existingImages || []);
+    const [img, setImages] = useState(existingImages || []);
     const [goToProducts, setGoToProducts] = useState(false);
     const [isUploading, setIsUploading] = useState(false);
     const [categories, setCategories] = useState([]);
@@ -37,31 +38,53 @@ export default function ProductForm({
     const [wattage, setWattage] = useState(existingWattage || '');
     const [feature, setFeature] = useState(existingFeature || '');
     const navigate = useNavigate();
-    const link_info = "/products/edit-info";
+    const MySwal = withReactContent(Swal);
 
-    // useEffect(() => {
-    //     axios.get('/api/categories').then(result => {
-    //         setCategories(result.data);
-    //     })
-    //     axios.get('/api/firm').then(result => {
-    //         setFirms(result.data);
-    //     });
-    // }, []);
+
+    async function getdata() {
+        try {
+            await axios.get('https://miencongnghe.vn/api/category/getAllCategory').then(result => {
+                setCategories(result.data.data);
+            })
+            await axios.get('https://miencongnghe.vn/api/firm/getAllFirm').then(result => {
+                setFirms(result.data.data);
+            });
+        } catch(er) {
+            console.log(er);
+            getdata();
+        }
+    }
+
+    useEffect(() => {
+        getdata();
+    }, []);
 
     async function saveProduct(ev) {
         ev.preventDefault();
         const data = {
-            title, description, price, images, category, firm, code, status, origin, guarantee, wattage, feature,
-            properties :productProperties
+            name, description, price, img, category, firm, code, status, origin, guarantee, wattage, feature
         };
-        if (_id) {
+        if (id) {
             //update
-            //await axios.put('/api/products', {...data,_id});
+            await axios.put('https://miencongnghe.vn/api/product/'+ id, {...data,id}).then(() => {
+                alert('Lưu thông tin sản phẩm thành công')
+            } 
+            );
+            setGoToProducts(true);
         } else {
             //create
-            //await axios.post('/api/products', data);
+            try {
+                await axios.post('https://miencongnghe.vn/api/product/create', data).then(() => {
+                    alert('Lưu thông tin sản phẩm thành công');
+                    setGoToProducts(true);
+                }
+                );
+            } catch(er) {
+                alert('Vui lòng điền đầy đủ thông tin sản phẩm')
+            }
+            
         }
-        setGoToProducts(true);
+        
     }
 
     if (goToProducts) {
@@ -69,23 +92,49 @@ export default function ProductForm({
     }
 
     async function uploadImages(ev) {
-        const files = ev.target?.files;
-        if (files?.length > 0) {
+        if (ev.target.files[0]) {
             setIsUploading(true);
             const data = new FormData();
-            for (const file of files) {
-                data.append('file', file);
-            }
-            const res = {}
+            data.append('data', ev.target.files[0]);
+            const res = await axios.post('https://miencongnghe.vn/uploadImg', data);
             setImages(oldImages => {
-                return [...oldImages, ...res.data.links];
+                return [...oldImages, res.data.links];
             });
+            console.log(img);
             setIsUploading(false);
         }
     }
 
-    function updateImagesOrder(images) {
-        setImages(images);
+    function updateImagesOrder(img) {
+        setImages(img);
+    }
+
+    function deleteImg(link){
+        MySwal.fire({
+        title: 'Bạn có chắc không?',
+        text: `Bạn có muốn xóa ảnh này không?`,
+        showCancelButton: true,
+        cancelButtonText: 'Hủy',
+        confirmButtonText: 'Có',
+        confirmButtonColor: '#d55',
+        reverseButtons: true,
+        }).then(async result => {
+        if (result.isConfirmed) {
+            const updatedLinks = img.filter(link_ => link_ !== link);
+            const data = {link: link};
+            console.log(data);
+            const res = await axios.post('https://miencongnghe.vn/deleteImg', data);
+            if (!res.data.success) alert('Xóa ảnh không thành công')
+            setImages(updatedLinks);
+            const data2 = {
+                img: updatedLinks
+            };
+            if (id) {
+                //update
+                await axios.put('https://miencongnghe.vn/api/product/'+ id, {...data2,id})
+            }
+        }
+        });
     }
     
     return (
@@ -95,14 +144,14 @@ export default function ProductForm({
             <input
                 type="text"
                 placeholder="tên sản phẩm"
-                value={title}
-                onChange={ev => setTitle(ev.target.value)}/>
+                value={name}
+                onChange={ev => setName(ev.target.value)}/>
 
         <label>Danh mục sản phẩm</label>
         <select value={category} onChange={ev => setCategory(ev.target.value)}>
-            <option value="">Không có</option>
+            <option value=''>Không có</option>
             {categories.length > 0 && categories.map(c => (
-                <option key={c._id} value={c._id}>{c.name}</option>
+                <option key={c.id} value={c.id}>{c.name}</option>
             ))}
         </select>
 
@@ -110,7 +159,7 @@ export default function ProductForm({
         <select value={firm} onChange={ev => setFirm(ev.target.value)}>
             <option value="">Không có</option>
             {firms.length > 0 && firms.map(c => (
-                <option key={c._id} value={c._id}>{c.name}</option>
+                <option key={c.id} value={c.id}>{c.name}</option>
             ))}
         </select>
 
@@ -124,11 +173,15 @@ export default function ProductForm({
         <label>Hình ảnh</label>
         <div className="mb-2 flex flex-wrap gap-1">
             <ReactSortable
-                list={images}
+                list={img}
                 className="flex flex-wrap gap-1"
                 setList={updateImagesOrder}>
-                {!!images?.length && images.map(link => (
-                    <div key={link} className="h-24 bg-white p-4 shadow-sm rounded-sm border border-gray-200">
+                {img?.length > 0 && img.map(link => (
+                    <div key={link} className="img">
+                        <button type="button" onClick={() => deleteImg(link)} className="btn-del">
+                            Xóa ảnh
+                        </button>
+                        <a href={link} className="btn-del">Xem ảnh</a>
                         <img src={link} alt="" className="rounded-lg"/>
                     </div>
                 ))}
@@ -202,7 +255,7 @@ export default function ProductForm({
                 Lưu
             </button>
 
-            <button onClick={() => navigate(link_info)} className='btn-primary info'>Sửa thông số kỹ thuật của sản phẩm</button>
+            {id && <a href={'/products/edit-info/'+ id} className='btn-primary info'>Sửa thông số kỹ thuật của sản phẩm</a>}
         </div>
         
       </form>
