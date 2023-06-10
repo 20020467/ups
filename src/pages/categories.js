@@ -25,7 +25,7 @@ const Categories = () => {
     }, [])
 
     async function fetchCategories() {
-        axios.get('https://miencongnghe.vn/api/category/getAllCategory').then(result => {
+        axios.get('http://localhost:8080/api/category/getAllCategory').then(result => {
             setCategories(result.data.data);
         });
     }
@@ -42,11 +42,12 @@ const Categories = () => {
         };
         if (editedCategory) {
             data.id = editedCategory.id;
-            await axios.put('https://miencongnghe.vn/api/category/'+data.id, data);
+            console.log(editCategory);
+            await axios.put('http://localhost:8080/api/category/'+data.id, data);
             setEditedCategory(null);
         } else {
             try {
-                await axios.post('https://miencongnghe.vn/api/category/create', data);
+                await axios.post('http://localhost:8080/api/category/create', data);
             } catch(er) {
                 alert('Danh mục đã tồn tại hoặc đang để trống');
             }
@@ -82,7 +83,7 @@ const Categories = () => {
         }).then(async result => {
         if (result.isConfirmed) {
             const {id} = category;
-            await axios.delete('https://miencongnghe.vn/api/category/'+id);
+            await axios.delete('http://localhost:8080/api/category/'+id);
             fetchCategories();
         }
         });
@@ -93,7 +94,7 @@ const Categories = () => {
             setIsUploading(true);
             const data = new FormData();
             data.append('data', ev.target.files[0]);
-            const res = await axios.post('https://miencongnghe.vn/api/uploadImg', data);
+            const res = await axios.post('http://localhost:8080/api/uploadImg', data);
             setImages(oldImages => {
                 return [...oldImages, res.data.links];
             });
@@ -120,7 +121,7 @@ const Categories = () => {
             const updatedLinks = img.filter(link_ => link_ !== link);
             const data = {link: link};
             console.log(data);
-            const res = await axios.post('https://miencongnghe.vn/deleteImg', data);
+            const res = await axios.post('http://localhost:8080/deleteImg', data);
             if (!res.data.success) alert('Xóa ảnh không thành công')
             setImages(updatedLinks);
             const data2 = {
@@ -128,7 +129,7 @@ const Categories = () => {
             };
             if (editedCategory) {
                 data2.id = editedCategory.id;
-                await axios.put('https://miencongnghe.vn/api/category/'+data2.id, data2);
+                await axios.put('http://localhost:8080/api/category/'+data2.id, data2);
             }
         }
         });

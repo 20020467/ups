@@ -15,7 +15,7 @@ export default function Layout({children }) {
     const data = {
       username, password
     }
-    await axios.post('https://miencongnghe.vn/api/auth/login', data).then(
+    await axios.post('http://localhost:8080/api/auth/login', data).then(
       () => {
         setIsAdmin(true);
         alert('Đăng nhập thành công');

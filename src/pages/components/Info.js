@@ -64,12 +64,12 @@ export default function Info({
         };
         if (productID) {
             //update
-            await axios.put('https://miencongnghe.vn/api/info/'+id, data).then(() => {
+            await axios.put('http://localhost:8080/api/info/'+id, data).then(() => {
                 alert('Lưu thông số kỹ thuật của sản phẩm thành công')
             });
         } else {
             //create
-            await axios.post('https://miencongnghe.vn/api/info/'+id, data).then(() => {
+            await axios.post('http://localhost:8080/api/info/'+id, data).then(() => {
                 alert('Tạo thông số kỹ thuật cho sản phẩm thành công')
             });
         }

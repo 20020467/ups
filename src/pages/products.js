@@ -8,7 +8,7 @@ export default function Products() {
   var bodyFormData = new FormData();
 
   useEffect(() => {
-    axios.get('https://miencongnghe.vn/api/product/getAllProduct').then(response => {
+    axios.get('http://localhost:8080/api/product/getAllProduct').then(response => {
       setProducts(response.data);
     });
   }, []);
@@ -16,7 +16,7 @@ export default function Products() {
   const navigate = useNavigate();
 
   async function importDataByExcel() {
-    //await axios.post('https://miencongnghe.vn/api/product/uploadfile', file);
+    //await axios.post('http://localhost:8080/api/product/uploadfile', file);
     if (!file) {
       alert('Vui lòng chọn tệp excel');
       return;
@@ -24,12 +24,12 @@ export default function Products() {
     bodyFormData.append('file', file)
     await axios({
       method: "post",
-      url: "https://miencongnghe.vn/api/product/uploadfile",
+      url: "http://localhost:8080/api/product/uploadfile",
       data: bodyFormData,
       headers: { "Content-Type": "multipart/form-data" },
     }).then(() => {
       alert('Thêm sản phẩm mới thành công');
-      axios.get('https://miencongnghe.vn/api/product/getAllProduct').then(response => {
+      axios.get('http://localhost:8080/api/product/getAllProduct').then(response => {
         setProducts(response.data);
       });
     })

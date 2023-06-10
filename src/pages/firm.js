@@ -21,8 +21,8 @@ const Firm = () => {
         fetchFirms();
     }, [])
 
-    function fetchFirms() {
-        axios.get('https://miencongnghe.vn/api/firm/getAllFirm').then(result => {
+    async function fetchFirms() {
+        await axios.get('http://localhost:8080/api/firm/getAllFirm').then(result => {
             setFirms(result.data.data);
         });
     }
@@ -36,10 +36,10 @@ const Firm = () => {
         };
         if (editedFirm) {
             data.id = editedFirm.id;
-            await axios.put('https://miencongnghe.vn/api/firm/'+ data.id, data);
+            await axios.put('http://localhost:8080/api/firm/'+ data.id, data);
             setEditedFirm(null);
         } else {
-            await axios.post('https://miencongnghe.vn/api/firm/create' , data);
+            await axios.post('http://localhost:8080/api/firm/create' , data);
         }
         setName('');
         setDescription('');
@@ -66,8 +66,10 @@ const Firm = () => {
         }).then(async result => {
         if (result.isConfirmed) {
             const {id} = firm;
-            await axios.delete('https://miencongnghe.vn/api/firm/'+id);
-            fetchFirms();
+            await axios.delete('http://localhost:8080/api/firm/'+id).then(() => {
+                fetchFirms();
+                alert('Xóa thành công')
+            })
         }
         });
     }
@@ -77,7 +79,7 @@ const Firm = () => {
             setIsUploading(true);
             const data = new FormData();
             data.append('data', ev.target.files[0]);
-            const res = await axios.post('https://miencongnghe.vn/api/uploadImg', data);
+            const res = await axios.post('http://localhost:8080/api/uploadImg', data);
             setImages(oldImages => {
                 return [...oldImages, res.data.links];
             });
@@ -104,7 +106,7 @@ const Firm = () => {
             const updatedLinks = img.filter(link_ => link_ !== link);
             const data = {link: link};
             console.log(data);
-            const res = await axios.post('https://miencongnghe.vn/deleteImg', data);
+            const res = await axios.post('http://localhost:8080/deleteImg', data);
             if (!res.data.success) alert('Xóa ảnh không thành công')
             setImages(updatedLinks);
             const data2 = {
@@ -112,7 +114,7 @@ const Firm = () => {
             };
             if (editedFirm) {
                 data2.id = editedFirm.id;
-                await axios.put('https://miencongnghe.vn/api/firm/'+ data2.id, data2);
+                await axios.put('http://localhost:8080/api/firm/'+ data2.id, data2);
                 setEditedFirm(null);
             }
         }

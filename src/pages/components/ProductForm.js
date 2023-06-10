@@ -23,13 +23,13 @@ export default function ProductForm({
 }) {
     const [name, setName] = useState(existingName || '');
     const [description, setDescription] = useState(existingDescription || '');
-    const [category, setCategory] = useState(assignedCategory || '');
-    const [price, setPrice] = useState(existingPrice || '');
+    const [category, setCategory] = useState(assignedCategory || null);
+    const [price, setPrice] = useState(existingPrice || 0);
     const [img, setImages] = useState(existingImages || []);
     const [goToProducts, setGoToProducts] = useState(false);
     const [isUploading, setIsUploading] = useState(false);
     const [categories, setCategories] = useState([]);
-    const [firm, setFirm] = useState(assignedFirm || '');
+    const [firm, setFirm] = useState(assignedFirm || null);
     const [firms, setFirms] = useState([]);
     const [code, setCode] = useState(existingCode || '');
     const [status, setStatus] = useState(assignedStatus || true);
@@ -43,15 +43,18 @@ export default function ProductForm({
 
     async function getdata() {
         try {
-            await axios.get('https://miencongnghe.vn/api/category/getAllCategory').then(result => {
+            await axios.get('http://localhost:8080/api/category/getAllCategory').then(result => {
                 setCategories(result.data.data);
             })
-            await axios.get('https://miencongnghe.vn/api/firm/getAllFirm').then(result => {
+            await axios.get('http://localhost:8080/api/firm/getAllFirm').then(result => {
                 setFirms(result.data.data);
             });
+            const p = await axios.get('http://localhost:8080/api/product/p/'+ id).then(result => {
+                setFirm(result.data.product.firm);
+                setCategory(result.data.product.category);
+            })
         } catch(er) {
             console.log(er);
-            getdata();
         }
     }
 
@@ -66,7 +69,7 @@ export default function ProductForm({
         };
         if (id) {
             //update
-            await axios.put('https://miencongnghe.vn/api/product/'+ id, {...data,id}).then(() => {
+            await axios.put('http://localhost:8080/api/product/'+ id, {...data,id}).then(() => {
                 alert('Lưu thông tin sản phẩm thành công')
             } 
             );
@@ -74,7 +77,7 @@ export default function ProductForm({
         } else {
             //create
             try {
-                await axios.post('https://miencongnghe.vn/api/product/create', data).then(() => {
+                await axios.post('http://localhost:8080/api/product/create', data).then(() => {
                     alert('Lưu thông tin sản phẩm thành công');
                     setGoToProducts(true);
                 }
@@ -96,7 +99,7 @@ export default function ProductForm({
             setIsUploading(true);
             const data = new FormData();
             data.append('data', ev.target.files[0]);
-            const res = await axios.post('https://miencongnghe.vn/api/uploadImg', data);
+            const res = await axios.post('http://localhost:8080/api/uploadImg', data);
             setImages(oldImages => {
                 return [...oldImages, res.data.links];
             });
@@ -123,7 +126,7 @@ export default function ProductForm({
             const updatedLinks = img.filter(link_ => link_ !== link);
             const data = {link: link};
             console.log(data);
-            const res = await axios.post('https://miencongnghe.vn/deleteImg', data);
+            const res = await axios.post('http://localhost:8080/deleteImg', data);
             if (!res.data.success) alert('Xóa ảnh không thành công')
             setImages(updatedLinks);
             const data2 = {
@@ -131,7 +134,7 @@ export default function ProductForm({
             };
             if (id) {
                 //update
-                await axios.put('https://miencongnghe.vn/api/product/'+ id, {...data2,id})
+                await axios.put('http://localhost:8080/api/product/'+ id, {...data2,id})
             }
         }
         });
@@ -149,7 +152,7 @@ export default function ProductForm({
 
         <label>Danh mục sản phẩm</label>
         <select value={category} onChange={ev => setCategory(ev.target.value)}>
-            <option value=''>Không có</option>
+            <option value={null}>Không có</option>
             {categories.length > 0 && categories.map(c => (
                 <option key={c.id} value={c.id}>{c.name}</option>
             ))}
@@ -157,7 +160,7 @@ export default function ProductForm({
 
         <label>Hãng</label>
         <select value={firm} onChange={ev => setFirm(ev.target.value)}>
-            <option value="">Không có</option>
+            <option value={null}>Không có</option>
             {firms.length > 0 && firms.map(c => (
                 <option key={c.id} value={c.id}>{c.name}</option>
             ))}

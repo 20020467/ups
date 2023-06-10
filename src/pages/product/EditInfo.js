@@ -12,7 +12,7 @@ const Edit_Info = () => {
     }, [])
 
     async function fetchInfo() {
-        axios.get('https://miencongnghe.vn/api/info/'+ id).then(result => {
+        axios.get('http://localhost:8080/api/info/'+ id).then(result => {
             setProductInfo(result.data);
         });
     }

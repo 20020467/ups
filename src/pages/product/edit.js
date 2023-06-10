@@ -15,7 +15,7 @@ const Edit = () => {
     }, [])
 
     async function fetchProducts() {
-        axios.get('https://miencongnghe.vn/api/product/'+ id).then(result => {
+        axios.get('http://localhost:8080/api/product/'+ id).then(result => {
             setProductInfo(result.data.product);
         });
     }
