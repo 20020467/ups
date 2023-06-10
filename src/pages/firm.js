@@ -77,7 +77,7 @@ const Firm = () => {
             setIsUploading(true);
             const data = new FormData();
             data.append('data', ev.target.files[0]);
-            const res = await axios.post('https://miencongnghe.vn/uploadImg', data);
+            const res = await axios.post('https://miencongnghe.vn/api/uploadImg', data);
             setImages(oldImages => {
                 return [...oldImages, res.data.links];
             });
